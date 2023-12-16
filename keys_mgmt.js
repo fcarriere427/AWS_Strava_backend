@@ -28,8 +28,9 @@ client.getSecretValue({ SecretId: secretName }, function(err, data) {
       const client_secret = secrets.client_secret;
       const refresh_token = secrets.refresh_token;
     }
-});  
 
-console.log(`client_id = `+client_id);
-console.log(`client_secret = `+client_secret);
-console.log(`refresh_token = `+refresh_token);
+    console.log(`client_id = `+client_id);
+    console.log(`client_secret = `+client_secret);
+    console.log(`refresh_token = `+refresh_token);
+
+});  
