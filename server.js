@@ -7,8 +7,8 @@
 //// Require
 const express = require('express')
 // Fonctions d'accès à la DB
-const dbFun = require('./dbFunctions');
-const utils = require('./utils');
+//const dbFun = require('./dbFunctions');
+//const utils = require('./utils');
 
 // Definition
 const app = express()
