@@ -8,7 +8,7 @@ const AWS = require('aws-sdk');
 // Créer un client pour le secret manager, en spécifiant la région
 const client = new AWS.SecretsManager({
     region: 'eu-west-3' // La région où se trouve votre secret
-  });
+});
 
 // Le nom de votre secret dans le secret manager
 const secretName = 'strava_keys';
@@ -27,10 +27,9 @@ client.getSecretValue({ SecretId: secretName }, function(err, data) {
       const client_id = secrets.client_id;
       const client_secret = secrets.client_secret;
       const refresh_token = secrets.refresh_token;
+      console.log(`client_id = `+client_id);
+      console.log(`client_secret = `+client_secret);
+      console.log(`refresh_token = `+refresh_token);
     }
-
-    console.log(`client_id = `+client_id);
-    console.log(`client_secret = `+client_secret);
-    console.log(`refresh_token = `+refresh_token);
 
 });  
