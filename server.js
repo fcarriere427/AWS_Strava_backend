@@ -7,15 +7,15 @@
 //// Require
 const express = require('express')
 // Fonctions d'accès à la DB
-//const dbFun = require('./dbFunctions');
-//const utils = require('./utils');
+////const dbFun = require('./dbFunctions');
+////const utils = require('./utils');
 
 // Definition
 const app = express()
 const port = 3001
 
 // création et lancement du serveur
-require("./routes")(app);
+////require("./routes")(app);
 app.listen(port, () =>
     console.log(`App listening at http://localhost:${port}`)
 );
