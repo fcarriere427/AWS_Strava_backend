@@ -20,6 +20,12 @@ console.log('on est entrés dans "client.getSecretValue"');
       // Récupérer les secrets depuis la chaîne SecretString
       const secrets = JSON.parse(data.SecretString);
 console.log('on va renvoyer "secrets"');
+const client_id = secrets.client_id;
+const client_secret = secrets.client_secret;
+const refresh_token = secrets.refresh_token;
+console.log(`client_id = `+client_id);
+console.log(`client_secret = `+client_secret);
+console.log(`refresh_token = `+refresh_token);   
       return(secrets);
     }
   });  
