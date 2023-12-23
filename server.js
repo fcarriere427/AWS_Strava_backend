@@ -20,7 +20,7 @@ app.listen(port, () =>
 //Log console à chaque appel
 app.use(function timeLog(req, res, next) {
   let newDate = new Date(Date.now());
-  console.log(`Appel backend : ${newDate.toDateString()} ${newDate.toTimeString()}');
+  console.log(`Appel backend : ${newDate.toDateString()} ${newDate.toTimeString()}`);
 });
 
 module.exports = app;
