@@ -11,13 +11,15 @@ function getStravaSecret(){
   const secretName = 'strava_keys';
   // Appeler la méthode getSecretValue avec le nom du secret
   client.getSecretValue({ SecretId: secretName }, function(err, data) {
+console.log('on est entrés dans "client.getSecretValue"');
+
     if (err) {
       // Gérer les erreurs
       console.error('Erreur lors de la récupération du secret', err);
     } else {
       // Récupérer les secrets depuis la chaîne SecretString
       const secrets = JSON.parse(data.SecretString);
-      console.log('on va renvoyer "secrets"');
+console.log('on va renvoyer "secrets"');
       return(secrets);
     }
   });  
