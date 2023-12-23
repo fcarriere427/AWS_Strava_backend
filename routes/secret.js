@@ -5,7 +5,7 @@ module.exports = {
     config: (router) => {
         router
             .get("/", (req, res) => {
-              get_secret.getStravaSecret() // année pour filtrer
+              get_secret.getStravaSecret()
               .then((secrets) => {
                 console.log("... récupération des secrets : OK");
                 // Extraire les informations utiles --> à reprendre dans la fonction principale
@@ -15,7 +15,7 @@ module.exports = {
                 console.log(`client_id = `+client_id);
                 console.log(`client_secret = `+client_secret);
                 console.log(`refresh_token = `+refresh_token);                
-                // Extraire les informations utiles --> à reprendre dans la fonction principale
+                // renvoi du json 
                 res.setHeader('content-type', 'application/json');
                 res.status(200).send(secrests);
               })
