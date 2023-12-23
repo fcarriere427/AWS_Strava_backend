@@ -21,10 +21,6 @@ app.listen(port, () =>
 app.use(function timeLog(req, res, next) {
   let newDate = new Date(Date.now());
   console.log(`Appel backend : ${newDate.toDateString()} ${newDate.toTimeString()}`);
-  // ci-dessous : pour problème CORS en dev (avec react, pour accès local)
-  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
 });
 
 module.exports = app;
