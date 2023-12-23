@@ -3,6 +3,8 @@ const AWS = require('aws-sdk');
 
 
 function getStravaSecret(){
+console.log('Entrée dans getStravaSecret');
+    
     // Créer un client pour le secret manager, en spécifiant la région
   const client = new AWS.SecretsManager({
     region: 'eu-west-3' // La région où se trouve votre secret
