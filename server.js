@@ -6,7 +6,7 @@
 
 //// Importer express et les routes
 import express from 'express'
-import routes from "./routes";
+import router from "./routes";
 //import * as routes from "./routes";
 
 // Definition
@@ -14,7 +14,7 @@ const app = express()
 const port = 3001
 
 // création et lancement du serveur
-app.use(routes);
+app.use(router);
 app.listen(port, () =>
     console.log(`App listening at http://localhost:${port}`)
 );
