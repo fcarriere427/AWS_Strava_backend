@@ -6,7 +6,7 @@
 
 //// Importer express et les routes
 import express from 'express'
-//import * as routes from "./routes";
+import * as routes from "./routes";
 import list from './routes/list';
 
 // Definition
