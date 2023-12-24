@@ -4,8 +4,8 @@ import express from "express";
 // Créer un routeur express
 const aurevoirRouter = express.Router();
 
-// Définir la route qui renvoie "au revoir"
-aurevoirRouter.get("/aurevoir", (req, res) => {
+// Envoyer la réponse (attention "/" car le reste de l'URL est géré par le routeur "routes.js" à la racine)
+aurevoirRouter.get("/", (req, res) => {
   res.send("au revoir");
 });
 
