@@ -1,5 +1,5 @@
 // Importer le module aws-sdk pour accéder au secret manager
-const { SecretsManagerClient } = require("@aws-sdk/client-secrets-manager"); // CommonJS import
+const { SecretsManagerClient, getSecretValue } = require("@aws-sdk/client-secrets-manager"); // CommonJS import
 
 // API endpoint
 module.exports = {
