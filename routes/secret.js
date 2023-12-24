@@ -18,7 +18,7 @@ module.exports = {
     },
 };
 
- function getStravaSecret(){   
+function getStravaSecret(){   
   return new Promise((resolve, reject) => {
     ////const client = new SecretsManagerClient();  
     // Nom de votre secret dans le secret manager
@@ -38,13 +38,10 @@ module.exports = {
   }) 
 }
 
-
 async function getSecretValue (secretName) {
   const client = new SecretsManagerClient({
     region: 'eu-west-3' // La région où se trouve votre secret
   });
-
-
   const response = await client.send(
     new GetSecretValueCommand({
       SecretId: secretName,
@@ -54,7 +51,6 @@ async function getSecretValue (secretName) {
   if (response.SecretString) {
     return response.SecretString;
   }
-
   if (response.SecretBinary) {
     return response.SecretBinary;
   }
