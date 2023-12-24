@@ -1,5 +1,5 @@
 // Importer le module aws-sdk pour accéder au secret manager
-const { SecretsManagerClient, getSecretValue } = require("@aws-sdk/client-secrets-manager"); // CommonJS import
+const { SecretsManagerClient, getSecretValueCommand } = require("@aws-sdk/client-secrets-manager"); // CommonJS import
 
 // API endpoint
 module.exports = {
@@ -25,7 +25,7 @@ async function getStravaSecret(){
   const secretName = 'strava_keys';
   // Instanciation du client Secret Manager dans la bonne région
   const client = new SecretsManagerClient({region: 'eu-west-3'});
-  const response = await client.getSecretValue({
+  const response = await client.getSecretValueCommand({
     SecretId: secretName,
   })
   .promise();
