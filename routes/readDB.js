@@ -32,7 +32,7 @@ async function callDB() {
     TableName: "StravaDB", // Le nom de la table DynamoDB
     KeyConditionExpression: "ID = :pk",
       ExpressionAttributeValues: {
-      ":pk": {"N": "0"}
+      ":pk": {"N": 0}
     }
   };
   const command = new QueryCommand(params);
