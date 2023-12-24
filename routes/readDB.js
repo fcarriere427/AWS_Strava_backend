@@ -22,7 +22,7 @@ readDBRouter.get("/", (req, res) => {
 // Exécuter la requête et afficher la réponse
 async function callDB() {
   // Spécifier la région
-  const config = {region: 'eu-west-1'};
+  const config = {region: 'eu-west-3'};
   // Créer un client DynamoDB
   const client = new DynamoDBClient(config);
   // Créer un client document DynamoDB
@@ -32,7 +32,7 @@ async function callDB() {
     TableName: "StravaDB", // Le nom de la table DynamoDB
     KeyConditionExpression: "ID = :pk",
       ExpressionAttributeValues: {
-      ":pk": {"S": "activity"}
+      ":pk": {"N": "0"}
     }
   };
   const command = new QueryCommand(params);
