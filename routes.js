@@ -1,7 +1,7 @@
 import express from 'express'
 
-import bonjourRouter from '../routes/bonjour'
-import aurevoirRouter from '../routes/aurevoir'
+import bonjourRouter from './routes/bonjour.js'
+import aurevoirRouter from './routes/aurevoir.js'
 
 function routes(app) {
   app.use("/bonjour", bonjourRouter);
