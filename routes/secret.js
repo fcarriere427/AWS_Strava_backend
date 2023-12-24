@@ -39,7 +39,7 @@ module.exports = {
 }
 
 
-function getSecretValue = async (secretName = "SECRET_NAME") => {
+async function getSecretValue (secretName) {
   const client = new SecretsManagerClient();
   const response = await client.send(
     new GetSecretValueCommand({
