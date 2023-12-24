@@ -5,17 +5,14 @@
 // ***********************
 
 //// Require
-//const express = require('express')
-import express from 'express';
+const express = require('express')
 
 // Definition
 const app = express()
 const port = 3001
 
 // création et lancement du serveur
-import secret from "./routes";
-
-//require("./routes")(app);
+require("./routes")(app);
 app.listen(port, () =>
     console.log(`App listening at http://localhost:${port}`)
 );
