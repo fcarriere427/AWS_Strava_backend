@@ -1,13 +1,13 @@
-module.exports = {
-    path: "/api",
-    config: (router) => {
-        router
-            .get("/", (req, res) => {
-                console.log("l'API fonctionne !");
-                res.setHeader('content-type', 'application/json');
-                res.status(200).send("rien du tout");
-            })
-            .post("/", (req, res) => res.send("No POST here!"));
-        return router;
-    },
-};
+/ Importer le module express
+import express from "express";
+
+// Créer un routeur express
+const router = express.Router();
+
+// Définir la route qui renvoie "bonjour"
+router.get("/list", (req, res) => {
+  res.send("bonjour");
+});
+
+// Exporter le routeur
+export default router;
