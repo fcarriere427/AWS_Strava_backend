@@ -6,7 +6,7 @@
 import express from "express";
 
 // Importer le module custom d'appel à la DB 
-import { callDB } from "../callDB";
+import { callDB } from "./callDB";
 
 module.exports = {
     path: "/db",
