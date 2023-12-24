@@ -5,6 +5,7 @@ module.exports = {
     config: (router) => {
         router
             .get("/", (req, res) => {
+console.log('1er get');
               get_secret.getStravaSecret()
               .then((secrets) => {
                 console.log("... récupération des secrets : OK");
