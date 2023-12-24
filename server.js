@@ -4,16 +4,16 @@
 // Prérequis NGINX : définir la route (reverse proxy) dans le fichier de conf nginx (dans /etc/nginx/sites-available/letsq.xyz)
 // ***********************
 
-//// Importer express
+//// Importer express et les routes
 import express from 'express'
+import routes from './routes'
 
 // Definition
 const app = express()
 const port = 3001
 
 // création et lancement du serveur
-import routes from "./routes";
-routes(app);
+app.use(routes);
 app.listen(port, () =>
     console.log(`App listening at http://localhost:${port}`)
 );
