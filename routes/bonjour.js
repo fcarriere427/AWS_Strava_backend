@@ -2,12 +2,12 @@
 import express from "express";
 
 // Créer un routeur express
-const router = express.Router();
+const bonjourRouter = express.Router();
 
 // Définir la route qui renvoie "bonjour"
-router.get("/bonjour", (req, res) => {
+bonjourRouter.get("/bonjour", (req, res) => {
   res.send("bonjour");
 });
 
 // Exporter le routeur
-export default router;
+export default bonjourRouter;
