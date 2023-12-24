@@ -40,7 +40,9 @@ module.exports = {
 
 
 async function getSecretValue (secretName) {
-  const client = new SecretsManagerClient();
+  const client = new SecretsManager({
+    region: 'eu-west-3' // La région où se trouve votre secret
+  });
   const response = await client.send(
     new GetSecretValueCommand({
       SecretId: secretName,
