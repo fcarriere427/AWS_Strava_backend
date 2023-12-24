@@ -6,7 +6,7 @@
 import express from "express";
 
 // Importer le module custom d'appel à la DB 
-import { callDB } from "./callDB";
+import { callDB } from "../callDB";
 
 module.exports = {
     path: "/db",
@@ -24,11 +24,3 @@ module.exports = {
         return router;
     },
 };
-
-// // Exécuter la requête et afficher la réponse
-// export const main = async () => {
-//   const command = new QueryCommand(params);
-//   const response = await docClient.send(command);
-//   console.log(response);
-//   return response;
-// };
