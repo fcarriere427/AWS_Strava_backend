@@ -1,6 +1,10 @@
 // API endpoint
 // First try to access Dynamo DB "StravaDB"
 
+
+// Importer le module custom d'appel à la DB 
+import express from "express";
+
 // Importer le module custom d'appel à la DB 
 import { callDB } from "./callDB";
 
