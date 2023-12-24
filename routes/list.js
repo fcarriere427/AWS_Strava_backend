@@ -1,4 +1,4 @@
-/ Importer le module express
+// Importer le module express
 import express from "express";
 
 // Créer un routeur express
