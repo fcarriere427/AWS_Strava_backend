@@ -7,7 +7,7 @@ module.exports = {
     config: (router) => {
         router
             .get("/", (req, res) => {
-              get_secret.getStravaSecret()
+              getStravaSecret()
               .then((secrets) => {
                 res.setHeader('content-type', 'application/json');
                 res.status(200).send(secrets);
