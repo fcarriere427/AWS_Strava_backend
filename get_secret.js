@@ -1,11 +1,12 @@
 // Importer le module aws-sdk pour accéder au secret manager
 //const AWS = require('aws-sdk');
 
-import { SecretsManagerClient } from "@aws-sdk/client-secrets-manager";
+// const AWS = require { SecretsManagerClient } from "@aws-sdk/client-secrets-manager";
+const AWS = require ("@aws-sdk/client-secrets-manager");
 
 function getStravaSecret(){   
   return new Promise((resolve, reject) => {
-    const client = new SecretsManagerClient();
+    const client = new AWS.SecretsManagerClient();
     
     // Créer un client pour le secret manager, en spécifiant la région
     // const client = new AWS.SecretsManager({
