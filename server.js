@@ -12,7 +12,7 @@ const app = express()
 const port = 3001
 
 // création et lancement du serveur
-import routes from "./routes";
+import routes from "./routes/index";
 routes(app);
 app.listen(port, () =>
     console.log(`App listening at http://localhost:${port}`)
