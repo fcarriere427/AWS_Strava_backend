@@ -2,11 +2,13 @@
 //const AWS = require('aws-sdk');
 
 // const AWS = require { SecretsManagerClient } from "@aws-sdk/client-secrets-manager";
-const AWS = require ("@aws-sdk/client-secrets-manager");
+//const AWS = require ("@aws-sdk/client-secrets-manager");
+const { SecretsManagerClient, GetSecretValueCommand } = require("@aws-sdk/client-secrets-manager"); // CommonJS import
+
 
 function getStravaSecret(){   
   return new Promise((resolve, reject) => {
-    const client = new AWS.SecretsManagerClient();
+    const client = new SecretsManagerClient();
     
     // Créer un client pour le secret manager, en spécifiant la région
     // const client = new AWS.SecretsManager({
