@@ -7,8 +7,6 @@ module.exports = {
             .get("/", (req, res) => {
               get_secret.getStravaSecret()
               .then((secrets) => {
-                console.log("... récupération des secrets : OK");
-                // renvoi du json 
                 res.setHeader('content-type', 'application/json');
                 res.status(200).send(secrets);
               })
