@@ -6,8 +6,8 @@
 
 //// Importer express et les routes
 import express from 'express'
-import router from "./routes/bonjour.js";
-//import * as routes from "./routes";
+//import router from "./routes/bonjour.js";
+import * as router from "./routes";
 
 // Definition
 const app = express()
