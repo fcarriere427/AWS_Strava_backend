@@ -5,7 +5,7 @@ import express from "express";
 const router = express.Router();
 
 // Définir la route qui renvoie "au revoir"
-router.get("/list", (req, res) => {
+router.get("/aurevoir", (req, res) => {
   res.send("au revoir");
 });
 
