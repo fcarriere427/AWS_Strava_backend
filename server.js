@@ -5,17 +5,20 @@
 // ***********************
 
 //// Require
-const express = require('express')
+import express from 'express'
 
 // Definition
 const app = express()
 const port = 3001
 
 // création et lancement du serveur
-require("./routes")(app);
+import routes from "./routes";
+routes(app);
 app.listen(port, () =>
     console.log(`App listening at http://localhost:${port}`)
 );
+
+//OLD : require("./routes")(app);
 
 //Log console à chaque appel
 app.use(function timeLog(req, res, next) {

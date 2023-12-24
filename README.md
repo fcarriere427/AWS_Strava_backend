@@ -7,4 +7,4 @@ Install
 
 
 Remarques : 
-- CommonJS (no ES6), so no "type : module" in package.json, and "require" instead of "import"
+- ES6, so ""type" : "module"" in package.json, and "import" instead of "require"
