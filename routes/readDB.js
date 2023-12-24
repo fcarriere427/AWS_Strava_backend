@@ -21,8 +21,10 @@ readDBRouter.get("/", (req, res) => {
 
 // Exécuter la requête et afficher la réponse
 async function callDB() {
+  // Spécifier la région
+  const config = {region: 'eu-west-1'};
   // Créer un client DynamoDB
-  const client = new DynamoDBClient({});
+  const client = new DynamoDBClient(config);
   // Créer un client document DynamoDB
   const docClient = DynamoDBDocumentClient.from(client);
   // Définir les paramètres de la requête
