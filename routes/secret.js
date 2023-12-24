@@ -23,12 +23,16 @@ async function getStravaSecret(){
   const secretName = 'strava_keys';
   // Instanciation du client Secret Manager dans la bonne région
   const client = new SecretsManagerClient({region: 'eu-west-3'});
+  const response = await client.getSecretValue({
+    SecretId: secretName,
+  })
+  .promise();
   // Appeler la méthode getSecretValue avec le nom du secret
-  const response = await client.send(
-    new GetSecretValueCommand({
-      SecretId: secretName,
-    }),
-  );
+  // const response = await client.send(
+  //   new GetSecretValueCommand({
+  //     SecretId: secretName,
+  //   })
+  // );
   console.log(response);
   const secrets = JSON.parse(response.SecretString);
   return secrets;
