@@ -12,8 +12,8 @@ const app = express()
 const port = 3001
 
 // création et lancement du serveur
-import routes from "./routes/readDB";
-routes(app);
+import readDB from "./routes/readDB";
+readDB(app);
 app.listen(port, () =>
     console.log(`App listening at http://localhost:${port}`)
 );
