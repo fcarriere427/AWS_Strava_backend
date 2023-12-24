@@ -6,7 +6,7 @@
 
 //// Importer express et les routes
 import express from 'express'
-import routes from './routes'
+import * as routes from "./routes";
 
 // Definition
 const app = express()
