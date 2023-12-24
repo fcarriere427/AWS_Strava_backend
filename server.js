@@ -25,4 +25,4 @@ app.use(function timeLog(req, res, next) {
   console.log(`Appel backend : ${newDate.toDateString()} ${newDate.toTimeString()}`);
 });
 
-module.exports = app;
+export default app;
