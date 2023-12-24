@@ -5,7 +5,7 @@
 // ***********************
 
 //// Require
-const express = import('express')
+const express = require('express')
 
 // Definition
 const app = express()
