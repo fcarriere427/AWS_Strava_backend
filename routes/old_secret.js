@@ -18,21 +18,40 @@ module.exports = {
     },
 };
 
-async function getStravaSecret(){   
-  // Nom de votre secret dans le secret manager
-  const secretName = 'strava_keys';
-  // Instanciation du client Secret Manager dans la bonne région
+function getStravaSecret(){   
+  return new Promise((resolve, reject) => {
+    // Nom de votre secret dans le secret manager
+    const secretName = 'strava_keys';
+    // Appeler la méthode getSecretValue avec le nom du secret
+    getSecretValue({ SecretId: secretName }, function(err, data) {
+        if (err) {
+        // Gérer les erreurs
+        console.error('Erreur lors de la récupération du secret', err);
+      } else {
+        // Récupérer les secrets depuis la chaîne SecretString
+        const secrets = JSON.parse(data.SecretString);
+        resolve(secrets)
+      }
+    });
+  }) 
+}
+
+async function getSecretValue (secretName) {
   const client = new SecretsManagerClient({region: 'eu-west-3'});
-  // Appeler la méthode getSecretValue avec le nom du secret
   const response = await client.send(
     new GetSecretValueCommand({
       SecretId: secretName,
     }),
   );
   console.log(response);
-  const secrets = JSON.parse(response.SecretString);
-  return secrets;
-}
+  if (response.SecretString) {
+    return response.SecretString;
+  }
+  if (response.SecretBinary) {
+    return response.SecretBinary;
+  }
+};
+
 
 
 
