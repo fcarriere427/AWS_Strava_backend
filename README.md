@@ -12,4 +12,7 @@ A venir :
 
 
 Remarques : 
-- ES6, so ""type" : "module"" in package.json, and "import" instead of "require"
+- ES6, so 
+    * ""type" : "module"" in package.json
+    * "import" instead of "require"
+    * export default xxx  instead of module.export xxx

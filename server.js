@@ -6,7 +6,7 @@
 
 //// Importer express et les routes
 import express from 'express'
-import router from "./routes/list.js";
+import router from "./routes/bonjour.js";
 //import * as routes from "./routes";
 
 // Definition
