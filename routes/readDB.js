@@ -33,7 +33,7 @@ async function callDB() {
 
     KeyConditionExpression: "ID = :UserId",
     ExpressionAttributeNames: {
-        "#UserId": "UserId"
+        "ID": "UserId"
     },
     ExpressionAttributeValues: {
         ":UserId": 2
