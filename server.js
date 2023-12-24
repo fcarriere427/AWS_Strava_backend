@@ -13,7 +13,7 @@ const app = express()
 const port = 3001
 
 // création et lancement du serveur
-app.use(router);
+app.use(router(app));
 app.listen(port, () =>
     console.log(`App listening at http://localhost:${port}`)
 );
