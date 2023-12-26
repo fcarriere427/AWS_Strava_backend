@@ -34,7 +34,6 @@ async function callDB() {
   };
   const command = new QueryCommand(params);
   const response = await docClient.send(command);
-  console.log(response);
   return response;
 }
 
