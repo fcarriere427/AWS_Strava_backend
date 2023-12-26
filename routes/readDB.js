@@ -34,9 +34,6 @@ async function callDB() {
     KeyConditionExpression: "ID = :UserId",
     ExpressionAttributeNames: {
         "ID": "UserId"
-    },
-    ExpressionAttributeValues: {
-        ":UserId": 2
     }
   };
   const command = new QueryCommand(params);
