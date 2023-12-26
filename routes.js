@@ -1,14 +1,11 @@
 import express from 'express'
 
-import bonjourRouter from './routes/bonjour.js'
-import aurevoirRouter from './routes/aurevoir.js'
 import readDBRouter from './routes/readDB.js'
-
+import getLastStravaActivityRouter from './routes/getLastStravaActivity.js'
 
 function routes(app) {
-  app.use("/bonjour", bonjourRouter);
-  app.use("/aurevoir", aurevoirRouter);
   app.use("/readDB", readDBRouter);
+  app.use("/readDB", getLastStravaActivityRouter);
 };
 
 export default routes;

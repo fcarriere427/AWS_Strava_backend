@@ -16,7 +16,6 @@ readDBRouter.get("/", (req, res) => {
     res.send(response);
     }
   )
-
 });
 
 // Exécuter la requête et afficher la réponse

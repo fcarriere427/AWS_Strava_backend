@@ -10,8 +10,6 @@ Install
 
 A venir : 
 - npm install @aws-sdk/client-secrets-manager
-- 
-
 
 Remarques : 
 - ES6, so 
