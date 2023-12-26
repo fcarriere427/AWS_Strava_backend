@@ -30,11 +30,12 @@ async function callDB() {
   // Définir les paramètres de la requête
   const params = {
     TableName: "StravaDB", // Le nom de la table DynamoDB
-
     KeyConditionExpression: "ID = :UserId",
-    ExpressionAttributeNames: {
-        "ID": "UserId"
-    }
+    ExpressionAttributeValues: {
+      ":UserID": {
+          N: 0
+      }
+    },
   };
   const command = new QueryCommand(params);
   const response = await docClient.send(command);
