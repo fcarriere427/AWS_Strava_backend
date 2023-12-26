@@ -27,15 +27,13 @@ async function callDB() {
   const client = new DynamoDBClient(config);
   // Créer un client document DynamoDB
   const docClient = DynamoDBDocumentClient.from(client);
+  
+  
   // Définir les paramètres de la requête
   const params = {
     TableName: "StravaDB", // Le nom de la table DynamoDB
-    KeyConditionExpression: "ID = :UserId",
-    ExpressionAttributeValues: {
-      ":UserID": {
-          N: 0
-      }
-    },
+    KeyConditionExpression: "ID = :num",
+    ExpressionAttributeValues: {":num": 0}
   };
   const command = new QueryCommand(params);
   const response = await docClient.send(command);
