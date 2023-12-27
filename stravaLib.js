@@ -62,7 +62,7 @@ async function getAccessToken() {
       // Met à jours les clés Strava (dans le fichier ./keys/strava_keys.json)
       .then((res) => {
         //TMP
-        console.log('res = ' + res);
+        console.log('res.accessToken = ' + res.accessToken);
         // On renouvelles les tokens locaux
         accessToken = res.access_token;
         expiresAt = res.expires_at;
