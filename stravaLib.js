@@ -36,7 +36,7 @@ async function getAccessToken() {
     var clientId = stravaKeys.clientId;
     var clientSecret = stravaKeys.clientSecret;
     // on calcule la date actuelle, au bon format
-    currentTime = Math.trunc(Date.now()/1000);
+    var currentTime = Math.trunc(Date.now()/1000);
     // Si besoin de renouveller les tokens...
     if (currentTime > expiresAt) {
         console.log("Renouvellement des tokens...");

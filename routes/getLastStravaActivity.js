@@ -9,7 +9,7 @@ const getLastStravaActivityRouter = express.Router();
 
 // Envoyer la réponse (attention "/" car le reste de l'URL est géré par le routeur "routes.js" à la racine)
 getLastStravaActivityRouter.get("/", (req, res) => {
-  console.log('récupération de la dernière activité Strava');
+  console.log('Express router : récupération de la dernière activité Strava');
   getLastActivity()
   .then((response) => {
     res.send(response);
