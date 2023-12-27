@@ -65,9 +65,8 @@ async function getAccessToken() {
         accessToken = res.access_token;
         expiresAt = res.expires_at;
         refreshToken = res.refresh_token;
-        console.log('accessToken = ' + accessToken);
         // on les sauvegarde dans le fichier local en asynchrone (besoin d'attendre pour renvoyer la réponse)
-        var local_keys = JSON.parse({
+        var local_keys = JSON.stringify({
           refreshToken: refreshToken,
           accessToken: accessToken,
           expiresAt: expiresAt
