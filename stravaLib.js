@@ -67,18 +67,19 @@ async function getAccessToken() {
         refreshToken = res.refresh_token;
         console.log('accessToken = ' + accessToken);
         // on les sauvegarde dans le fichier local en asynchrone (besoin d'attendre pour renvoyer la réponse)
-        var local_keys = JSON.stringify({
+        var local_keys = JSON.parse({
           refreshToken: refreshToken,
           accessToken: accessToken,
           expiresAt: expiresAt
         });
         //******
-        console.log('res = ' + JSON.stringify(local_keys));
+        console.log('local_keys = ' + JSON.stringify(local_keys));
         //******
-        saveData(local_keys, './tokens.json');
       })
-      .catch(err => console.log('Error: ' + err))
-    } else { // ... mais si les tokens ne sont pas expirés, on ne fait rien
+       await saveData(local_keys, './tokens.json');
+    } 
+    else // ... mais si les tokens ne sont pas expirés, on ne fait rien
+    { 
       console.log("Tokens valides, pas de renouvellement");
     }
     return(accessToken);

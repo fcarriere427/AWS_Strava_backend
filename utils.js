@@ -4,7 +4,7 @@
 import https from 'https';
 import fs from 'fs';
 
-export default function httpsRequest(params, postData) {
+export default async function httpsRequest(params, postData) {
     //console.log("Requête http... avec : " + params);
     return new Promise(function(resolve, reject) {
       var req = https.request(params, function(res) {
@@ -36,7 +36,7 @@ export default function httpsRequest(params, postData) {
   });
 }
 
-export function saveData(data, filename) {
+export async function saveData(data, filename) {
   console.log("Sauvegarde des nouveaux tokens...");
   return new Promise(function(resolve, reject) {
     fs.writeFile(filename, data, 'utf-8', (err) => {
