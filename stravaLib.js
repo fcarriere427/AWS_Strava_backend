@@ -13,7 +13,7 @@ export default async function getLastActivity() {
     // Lance la requête de récupération des activités
     console.log('Récupération de la dernière activité Strava');
     await getAccessToken()
-    .then(data => {
+    .then(accessToken => {
         var options = `https://www.strava.com/api/v3/athlete/activities?page=` + 1 + `&per_page=`+ 1 + `&access_token=${accessToken}`;
         httpsRequest(options);
     })
