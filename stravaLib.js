@@ -9,7 +9,7 @@ import tokens from "./tokens.json" assert { type: "json" };
 
 // Récupération de la dernière activité 
 // voir le détail ici : https://developers.strava.com/docs/reference/#api-models-SummaryActivity
-async function getLastActivity() {
+export default async function getLastActivity() {
     // Lance la requête de récupération des activités
     console.log('Récupération de la dernière activité Strava');
     await getAccessToken()
@@ -22,8 +22,6 @@ async function getLastActivity() {
     // on renvoie l'activité
     return(data);
   }
-
-export default getLastActivity;
 
 ////////////////////////////////////
 // FONCTIONS INTERNES à ce module //
