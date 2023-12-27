@@ -12,13 +12,22 @@ import tokens from "./tokens.json" assert { type: "json" };
 export default async function getLastActivity() {
     // Lance la requête de récupération des activités
     console.log('Récupération de la dernière activité Strava');
-    accessToken = await getAccessToken()
-    var options = `https://www.strava.com/api/v3/athlete/activities?page=` + 1 + `&per_page=`+ 1 + `&access_token=${accessToken}`;
-    var res = await httpsRequest(options);
-    console.log('res = ' + res);
-    // console.log('res = ' + JSON.stringify(res));
-    return(res);
-}
+    await getAccessToken()
+    .then(accessToken => {
+        var options = `https://www.strava.com/api/v3/athlete/activities?page=` + 1 + `&per_page=`+ 1 + `&access_token=${accessToken}`;
+        var res = httpsRequest(options);
+        //******
+        console.log('res1 = ' + res);
+        // console.log('res = ' + JSON.stringify(res));
+        //******
+    })
+    .then(res => {
+        console.log('res2 = ' + res);
+        return(res);
+    })
+    .catch((err) => console.log(err))
+    // on renvoie l'activité
+  }
 
 ////////////////////////////////////
 // FONCTIONS INTERNES à ce module //
