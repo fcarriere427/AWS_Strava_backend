@@ -17,7 +17,7 @@ export default async function getLastActivity() {
         var options = `https://www.strava.com/api/v3/athlete/activities?page=` + 1 + `&per_page=`+ 1 + `&access_token=${accessToken}`;
         var res = httpsRequest(options);
         //******
-        console.log('res = ' + JSON.stringify(res));
+        console.log('res = ' + JSON.stringify(res[0]));
         //******
         return(res);
     })
