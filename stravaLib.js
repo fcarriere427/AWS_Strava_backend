@@ -15,6 +15,7 @@ export default async function getLastActivity() {
     await getAccessToken()
     .then(accessToken => {
         var options = `https://www.strava.com/api/v3/athlete/activities?page=` + 1 + `&per_page=`+ 1 + `&access_token=${accessToken}`;
+console.log('options = ' + options);
         var res = httpsRequest(options);
 //******
 console.log('res1 = ' + JSON.stringify(res));
