@@ -1,5 +1,5 @@
-// Fichier local qui contient les tokens refresh et access (temporaires)
-import utils from './utils.js';
+// Library perso avec fonctions "lecture http" et "save to file"
+const utils = require('./utils');
 // Fichiers locaux qui contiennent les ID et tokens Strava
 // import strava from "./strava.json" assert { type: `json` };
 // import tokens from "./tokens.json" assert { type: `json` };
