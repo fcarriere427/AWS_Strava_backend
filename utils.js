@@ -49,7 +49,5 @@ function saveData(data, filename) {
 }
 
 
-module.exports = {
-   httpsRequest,
-   saveData
- }
+export default httpsRequest;
+export const saveData = saveData;
