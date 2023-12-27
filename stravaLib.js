@@ -2,10 +2,10 @@
 // const utils = require('./utils');
 import utils from "./utils.js";
 // Fichiers locaux qui contiennent les ID et tokens Strava
-// import strava from "./strava.json" assert { type: `json` };
-// import tokens from "./tokens.json" assert { type: `json` };
-const strava = require('./strava.json');
-const tokens = require('./tokens.json');
+import strava from "./strava.json" assert { type: "json" };
+import tokens from "./tokens.json" assert { type: "json" };
+// const strava = require('./strava.json');
+// const tokens = require('./tokens.json');
 
 // Récupération de la dernière activité 
 // voir le détail ici : https://developers.strava.com/docs/reference/#api-models-SummaryActivity
