@@ -1,7 +1,7 @@
 // Importer le module express
 import express from "express";
 // Importer la librairie Strava perso
-import strava from "./stravaLib.js";
+import strava from "../stravaLib.js";
 
 // Créer un routeur express
 const getLastStravaActivityRouter = express.Router();
