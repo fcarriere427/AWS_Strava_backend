@@ -1,6 +1,6 @@
 // Library perso avec fonctions "lecture http" et "save to file"
 // const utils = require('./utils');
-import * as utils from "./utils.js";
+import httpsRequest, { saveData } from "./utils.js";
 // Fichiers locaux qui contiennent les ID et tokens Strava
 import stravaKeys from "./strava.json" assert { type: "json" };
 import tokens from "./tokens.json" assert { type: "json" };
@@ -58,7 +58,7 @@ async function getAccessToken() {
             }
       }
       // Lance la requête de renouvellement de l'access_token
-      await utils.httpsRequest(options,body)
+      await httpsRequest(options,body)
       // Met à jours les clés Strava (dans le fichier ./keys/strava_keys.json)
       .then((res) => {
         // On renouvelles les tokens locaux
@@ -72,7 +72,7 @@ async function getAccessToken() {
           accessToken: accessToken,
           expiresAt: expiresAt
         })
-        utils.saveData(local_keys, './keys/tokens.json');
+        saveData(local_keys, './keys/tokens.json');
       })
       .catch(err => console.log('Error: ' + err))
     } else { // ... mais si les tokens ne sont pas expirés, on ne fait rien
