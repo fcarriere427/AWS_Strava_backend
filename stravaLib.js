@@ -17,7 +17,7 @@ export default async function getLastActivity() {
     var res = await httpsRequest(options);
     console.log('res = ' + res);
     // console.log('res = ' + JSON.stringify(res));
-    return(res);
+    return(res[0]);
 }
 
 ////////////////////////////////////
