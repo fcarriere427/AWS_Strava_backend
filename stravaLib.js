@@ -35,6 +35,11 @@ async function getAccessToken() {
     var refreshToken = tokens.refreshToken;
     var clientId = stravaKeys.clientId;
     var clientSecret = stravaKeys.clientSecret;
+    var local_keys = JSON.stringify({
+        refreshToken: refreshToken,
+        accessToken: accessToken,
+        expiresAt: expiresAt
+      });
     // on calcule la date actuelle, au bon format
     var currentTime = Math.trunc(Date.now()/1000);
     // Si besoin de renouveller les tokens...
@@ -66,7 +71,7 @@ async function getAccessToken() {
         expiresAt = res.expires_at;
         refreshToken = res.refresh_token;
         // on les sauvegarde dans le fichier local en asynchrone (besoin d'attendre pour renvoyer la réponse)
-        var local_keys = JSON.stringify({
+        local_keys = JSON.stringify({
           refreshToken: refreshToken,
           accessToken: accessToken,
           expiresAt: expiresAt
