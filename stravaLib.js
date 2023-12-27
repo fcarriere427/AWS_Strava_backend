@@ -22,9 +22,7 @@ async function getLastActivity() {
     return(data);
   }
 
-module.exports = {
-    getLastActivity,
-}
+export default getLastActivity;
 
 ////////////////////////////////////
 // FONCTIONS INTERNES à ce module //
