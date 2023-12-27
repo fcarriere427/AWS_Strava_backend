@@ -61,12 +61,14 @@ async function getAccessToken() {
       await httpsRequest(options,body)
       // Met à jours les clés Strava (dans le fichier ./keys/strava_keys.json)
       .then((res) => {
-        //TMP
-        console.log('res = ' + JSON.stringify(res));
+        //******
+        // console.log('res = ' + JSON.stringify(res));
+        //******
         // On renouvelles les tokens locaux
         accessToken = res.access_token;
         expiresAt = res.expires_at;
         refreshToken = res.refresh_token;
+        console.log('accessToken = ' + accessToken);
         // on les sauvegarde dans le fichier local en asynchrone (besoin d'attendre pour renvoyer la réponse)
         console.log("... OK, tokens renouvellés !");
         var local_keys = JSON.stringify({
