@@ -5,7 +5,7 @@ import getLastStravaActivityRouter from './routes/getLastStravaActivity.js'
 
 function routes(app) {
   app.use("/readDB", readDBRouter);
-  app.use("/readDB", getLastStravaActivityRouter);
+  app.use("/getLastActivity", getLastStravaActivityRouter);
 };
 
 export default routes;
