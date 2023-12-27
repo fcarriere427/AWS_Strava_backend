@@ -12,7 +12,7 @@ import tokens from "./tokens.json" assert { type: "json" };
 export default async function getLastActivity() {
     // Lance la requête de récupération des activités
     console.log('Récupération de la dernière activité Strava');
-    accessToken = await getAccessToken()
+    var accessToken = await getAccessToken()
     var options = `https://www.strava.com/api/v3/athlete/activities?page=` + 1 + `&per_page=`+ 1 + `&access_token=${accessToken}`;
     var res = await httpsRequest(options);
     console.log('res = ' + res);
