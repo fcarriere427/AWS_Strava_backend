@@ -15,7 +15,7 @@ export default async function getLastActivity() {
     await getAccessToken()
     .then(data => {
         var options = `https://www.strava.com/api/v3/athlete/activities?page=` + 1 + `&per_page=`+ 1 + `&access_token=${accessToken}`;
-        utils.httpsRequest(options);
+        httpsRequest(options);
     })
     .then(data => console.log(data))
     .catch((err) => console.log(err))
@@ -61,6 +61,8 @@ async function getAccessToken() {
       await httpsRequest(options,body)
       // Met à jours les clés Strava (dans le fichier ./keys/strava_keys.json)
       .then((res) => {
+        //TMP
+        console.log('res = ' + res);
         // On renouvelles les tokens locaux
         accessToken = res.access_token;
         expiresAt = res.expires_at;
