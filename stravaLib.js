@@ -17,10 +17,14 @@ export default async function getLastActivity() {
         var options = `https://www.strava.com/api/v3/athlete/activities?page=` + 1 + `&per_page=`+ 1 + `&access_token=${accessToken}`;
         httpsRequest(options);
     })
-    .then(data => console.log(data))
+    .then(res => {
+//******
+console.log('res = ' + JSON.stringify(res));
+//******
+    })
     .catch((err) => console.log(err))
     // on renvoie l'activité
-    return(data);
+    return(res);
   }
 
 ////////////////////////////////////
@@ -76,9 +80,6 @@ async function getAccessToken() {
           accessToken: accessToken,
           expiresAt: expiresAt
         });
-        //******
-        console.log('local_keys = ' + JSON.stringify(local_keys));
-        //******
        })
        await saveData(local_keys, './tokens.json');
     } 
