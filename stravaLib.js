@@ -67,12 +67,12 @@ async function getAccessToken() {
         refreshToken = res.refresh_token;
         // on les sauvegarde dans le fichier local en asynchrone (besoin d'attendre pour renvoyer la réponse)
         console.log("... OK, tokens renouvellés !");
-        local_keys = JSON.stringify({
+        var local_keys = JSON.stringify({
           refreshToken: refreshToken,
           accessToken: accessToken,
           expiresAt: expiresAt
         })
-        saveData(local_keys, './keys/tokens.json');
+        saveData(local_keys, './tokens.json');
       })
       .catch(err => console.log('Error: ' + err))
     } else { // ... mais si les tokens ne sont pas expirés, on ne fait rien
