@@ -1,5 +1,5 @@
 // Fichier local qui contient les tokens refresh et access (temporaires)
-import utils from './utils';
+import utils from './utils.js';
 // Fichiers locaux qui contiennent les ID et tokens Strava
 import strava from "./strava.json";
 import tokens from "./tokens.json";
