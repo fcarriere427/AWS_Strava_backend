@@ -1,8 +1,8 @@
 // Library perso avec fonctions "lecture http" et "save to file"
 // const utils = require('./utils');
-import utils from "./utils.js";
+import * as utils from "./utils.js";
 // Fichiers locaux qui contiennent les ID et tokens Strava
-import strava from "./strava.json" assert { type: "json" };
+import stravaKeys from "./strava.json" assert { type: "json" };
 import tokens from "./tokens.json" assert { type: "json" };
 // const strava = require('./strava.json');
 // const tokens = require('./tokens.json');
@@ -33,8 +33,8 @@ async function getAccessToken() {
     var expiresAt = tokens.expiresAt;
     var accessToken = tokens.accessToken;
     var refreshToken = tokens.refreshToken;
-    var clientId = strava.clientId;
-    var clientSecret = strava.clientSecret;
+    var clientId = stravaKeys.clientId;
+    var clientSecret = stravaKeys.clientSecret;
     // on calcule la date actuelle, au bon format
     currentTime = Math.trunc(Date.now()/1000);
     // Si besoin de renouveller les tokens...

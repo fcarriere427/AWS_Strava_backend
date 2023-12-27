@@ -2,7 +2,7 @@
 import express from "express";
 // Importer la librairie Strava perso
 //const strava = require('../stravaLib.js');
-import strava from "../stravaLib.js";
+import * as stravaLib from "../stravaLib.js";
 
 // Créer un routeur express
 const getLastStravaActivityRouter = express.Router();
@@ -10,7 +10,7 @@ const getLastStravaActivityRouter = express.Router();
 // Envoyer la réponse (attention "/" car le reste de l'URL est géré par le routeur "routes.js" à la racine)
 getLastStravaActivityRouter.get("/", (req, res) => {
   console.log('récupération de la dernière activité Strava');
-  strava.getLastActivity()
+  stravaLib.getLastActivity()
   .then((response) => {
     res.send(response);
     }
