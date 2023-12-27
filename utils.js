@@ -1,7 +1,8 @@
 // Fonctions utilitaires : requete http, accès fichiers locaux
-
-const https = require('https');
-const fs = require('fs');
+// const https = require('https');
+// const fs = require('fs');
+import https from 'https';
+import fs from 'fs';
 
 function httpsRequest(params, postData) {
     //console.log("Requête http... avec : " + params);
