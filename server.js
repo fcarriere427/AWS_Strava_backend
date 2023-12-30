@@ -15,7 +15,7 @@ const port = 3001
 // création et lancement du serveur
 routes(app);
 app.listen(port, () =>
-    console.log(`App listening at http://localhost:${port}`)
+    console.log(`*** server.js: app listening at http://localhost:${port}`)
 );
 
 //Log console à chaque appel
