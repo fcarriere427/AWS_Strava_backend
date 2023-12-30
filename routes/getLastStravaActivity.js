@@ -1,7 +1,6 @@
 // Importer le module express
 import express from "express";
 // Importer la librairie Strava perso
-//const strava = require('../stravaLib.js');
 import getLastActivity from "../stravaLib.js";
 
 // Créer un routeur express

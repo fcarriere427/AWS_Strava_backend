@@ -11,7 +11,7 @@ import tokens from "./tokens.json" assert { type: "json" };
 // voir le détail ici : https://developers.strava.com/docs/reference/#api-models-SummaryActivity
 export default async function getLastActivity() {
     // Lance la requête de récupération des activités
-    console.log('Récupération de la dernière activité Strava');
+    console.log('stravaLib.js : récupération de la dernière activité Strava');
     var accessToken = await getAccessToken()
     var options = `https://www.strava.com/api/v3/athlete/activities?page=` + 1 + `&per_page=`+ 1 + `&access_token=${accessToken}`;
     var res = await httpsRequest(options);
@@ -39,6 +39,8 @@ async function getAccessToken() {
       });
     // on calcule la date actuelle, au bon format
     var currentTime = Math.trunc(Date.now()/1000);
+    console.log("currentTime: " + currentTime);
+    console.log("expiresAt: " + expiresAt);
     // Si besoin de renouveller les tokens...
     if (currentTime > expiresAt) {
         console.log("Renouvellement des tokens...");
