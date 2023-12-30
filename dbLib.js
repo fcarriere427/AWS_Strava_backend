@@ -1,6 +1,6 @@
 // Importer les modules nécessaires à l'accès à DynamoDB
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { PutCommand, QueryCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
+import { PutCommand, GetCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 
 // Ajouter un élément à StravaDB
 // **** WIP  ****
@@ -35,10 +35,18 @@ export async function getItemDB() {
   // Définir les paramètres de la requête
   const params = {
     TableName: "StravaDB", // Le nom de la table DynamoDB
-    KeyConditionExpression: "ID = :num",
-    ExpressionAttributeValues: {":num": 0}
+    Key:{ID: 0},
+    ConsistentRead: true,
   };
-  const command = new QueryCommand(params);
+  const command = new GetCommand(params);
   const response = await docClient.send(command);
   return response;
 }
+
+
+/// for QueryCommand: 
+// const params = {
+//     TableName: "StravaDB", // Le nom de la table DynamoDB
+//     KeyConditionExpression: "ID = :num",
+//     ExpressionAttributeValues: {":num": 0}
+// }  
