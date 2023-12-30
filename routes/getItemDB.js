@@ -12,8 +12,8 @@ export default getItemDBRouter.get("/", (req, res) => {
   getItemDB()
   .then((response) => {
     //console.log('response: ' + response);
-    console.log('response = ' + JSON.stringify(response));
-    res.send(response);
+    console.log('response.Activity = ' + JSON.stringify(response.Activity));
+    res.send(response.Activity);
     }
   )
 });
