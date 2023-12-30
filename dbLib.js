@@ -42,6 +42,7 @@ export async function getItemDB() {
   // const response = await docClient.send(command);
   // return response;
 
+  console.log('*** getItemDB in dbLib.js')
   const getCommand = new GetCommand({
     TableName: "StravaDB",
     Key: {
