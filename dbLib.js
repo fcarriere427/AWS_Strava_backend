@@ -6,7 +6,7 @@ import { PutCommand, QueryCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-d
 // **** WIP  ****
 export default async function addDB() {
   // Créer un client DynamoDB
-  const client = new DynamoDBClient(config);
+  const client = new DynamoDBClient({});
   // Créer un client document DynamoDB
   const docClient = DynamoDBDocumentClient.from(client);
   // Définir les paramètres de la requête
