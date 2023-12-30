@@ -21,39 +21,10 @@ export default async function addDB() {
     },
   }
   const command = new PutCommand(params);
-  const response = await docClient.send(putCommand);
+  const response = await docClient.send(command);
   return response;
 }
 
-
-// log("Adding a single movie to the table.");
-//   // PutCommand is the first example usage of 'lib-dynamodb'.
-//   const putCommand = new PutCommand({
-//     TableName: tableName,
-//     Item: {
-//       // In 'client-dynamodb', the AttributeValue would be required (`year: { N: 1981 }`)
-//       // 'lib-dynamodb' simplifies the usage ( `year: 1981` )
-//       year: 1981,
-//       // The preceding KeySchema defines 'title' as our sort (RANGE) key, so 'title'
-//       // is required.
-//       title: "The Evil Dead",
-//       // Every other attribute is optional.
-//       info: {
-//         genres: ["Horror"],
-//       },
-//     },
-//   });
-//   await docClient.send(putCommand);
-//   log("The movie was added.");
-
-
-
-
-///////////////////////////
-// en dessous : OK, validé 
-///////////////////////////
-
-// Lire un élément de la StravaDB
 // TMP : pour l'instant, ne fait que lire l'élément [0]
 export async function callDB() {
   // Spécifier la région
