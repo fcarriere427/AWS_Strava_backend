@@ -13,9 +13,11 @@ export default async function addItemDB(activity) {
   // Créer un client document DynamoDB
   const docClient = DynamoDBDocumentClient.from(client);
   // Définir les paramètres de la requête
+  var numID = Math.floor(Math.random()*100);
   const params = {
     TableName: "StravaDB", // Le nom de la table DynamoDB
     Item: {
+      ID: numID
       Activity: activity
     },
   }
