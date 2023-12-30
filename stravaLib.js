@@ -40,8 +40,6 @@ async function getAccessToken() {
     // on calcule la date actuelle, au bon format
     var currentTime = Math.trunc(Date.now()/1000);
     console.log("*** getAccessToken in stravaLib.js");
-    console.log("currentTime: " + currentTime);
-    console.log("expiresAt: " + expiresAt);
     // Si besoin de renouveller les tokens...
     if (currentTime > expiresAt) {
         console.log("Renouvellement des tokens...");
