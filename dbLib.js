@@ -63,14 +63,12 @@ export async function createDB(tableName) {
   const docClient = DynamoDBDocumentClient.from(client);
   
   // Teste si la base de données existe déjà 
+  // et la supprime si c'est le cas
   const listCommand = new ListTablesCommand({});
   const listTables = await client.send(listCommand);
-  console.log('tableName = '+ tableName);
-  console.log('Tables list = '+JSON.stringify(listTables.TableNames));
   if (listTables.TableNames.includes(tableName)) {
-    // Suppression de la base de données
-    const command = new DeleteTableCommand({ TableName: tableName });
-    const response = await client.send(command);
+    const deleteCommand = new DeleteTableCommand({ TableName: tableName });
+    const response = await client.send(deleteCommand);
     console.log('Database '+tableName+' has been deleted');
   }
 
