@@ -15,10 +15,7 @@ export default async function addItemDB() {
   const params = {
     TableName: "StravaDB", // Le nom de la table DynamoDB
     Item: {
-      // The preceding KeySchema defines 'title' as our sort (RANGE) key, so 'title'
-      // is required.
       ID: 0,
-      // test
       texte_test: "Florian"
     },
   }
@@ -43,5 +40,5 @@ export async function getItemDB() {
   };
   const command = new QueryCommand(params);
   const response = await docClient.send(command);
-  return response;
+  return response.Item;
 }
