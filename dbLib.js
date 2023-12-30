@@ -1,5 +1,5 @@
 // Importer les modules nécessaires à l'accès à DynamoDB
-import { CreateTableCommand, BillingMode, DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { CreateTableCommand, DeleteTableCommand, BillingMode, DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { PutCommand, GetCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 
 ///////////////////////////////////////////////
@@ -51,8 +51,9 @@ export async function getItemDB(numID) {
 
 ///////////////////////////////////////////////
 // Créer la base de données (ici : StravaDB) //
+// Efface la base de données si elle existe déjà
 ///////////////////////////////////////////////
-export async function createDB(dbName) {
+export async function createDB(tableName) {
   console.log('*** createDB in dbLib.js')
   // Spécifier la région
   const config = {region: 'eu-west-3'};
@@ -60,6 +61,17 @@ export async function createDB(dbName) {
   const client = new DynamoDBClient(config);
   // Créer un client document DynamoDB
   const docClient = DynamoDBDocumentClient.from(client);
+  
+  // Teste si la base de données existe déjà 
+  var existing_tables = docClient.list_tables()['TableNames'];
+  if (tableName in existing_tables) {
+    // Suppression de la base de données
+    const command = new DeleteTableCommand({ TableName: tableName });
+    const response = await client.send(command);
+    console.log('Database '+tableName+' has been deleted');
+  }
+
+  // Création de la base de données
   // Définir les paramètres de la requête
   const params = {
     TableName: dbName, // Le nom de la table DynamoDB
@@ -74,7 +86,7 @@ export async function createDB(dbName) {
     ],
   };
   const command = new CreateTableCommand(params);
-  console.log('database creation, it may take a few seconds...');
+  console.log('Database'+tableName+' will be create, it may take a few seconds...');
   const response = await docClient.send(command);
   return response;
 }
