@@ -1,6 +1,6 @@
 // Importer les modules nécessaires à l'accès à DynamoDB
-import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { PutCommand, GetCommand, CreateTableCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
+import { CreateTableCommand, DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { PutCommand, GetCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 
 // Ajouter un élément à StravaDB
 // **** WIP  ****
