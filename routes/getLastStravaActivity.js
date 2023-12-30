@@ -7,7 +7,7 @@ import getLastActivity from "../stravaLib.js";
 const getLastStravaActivityRouter = express.Router();
 
 // Envoyer la réponse (attention "/" car le reste de l'URL est géré par le routeur "routes.js" à la racine)
-getLastStravaActivityRouter.get("/", (req, res) => {
+export default getLastStravaActivityRouter.get("/", (req, res) => {
   console.log('*** getLastStravaActivity.js : appel de getLastActivity in stravaLib.js');
   getLastActivity()
   .then((response) => {
@@ -15,6 +15,3 @@ getLastStravaActivityRouter.get("/", (req, res) => {
     }
   )
 });
-
-// Exporter le routeur
-export default getLastStravaActivityRouter;

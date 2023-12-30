@@ -7,7 +7,7 @@ import getItemDB from "../dbLib.js";
 const getItemDBRouter = express.Router();
 
 // Envoyer la réponse (attention "/" car le reste de l'URL est géré par le routeur "routes.js" à la racine)
-getItemDBRouter.get("/", (req, res) => {
+export default getItemDBRouter.get("/", (req, res) => {
   console.log('*** getItemDB.js : appel de getItemDB in dbLib.js');
   getItemDB()
   .then((response) => {
@@ -17,6 +17,3 @@ getItemDBRouter.get("/", (req, res) => {
     }
   )
 });
-
-// Exporter le routeur
-export default getItemDBRouter;
