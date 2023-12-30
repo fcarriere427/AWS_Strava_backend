@@ -1,5 +1,5 @@
 // Importer les modules nécessaires à l'accès à DynamoDB
-import { CreateTableCommand, DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { CreateTableCommand, BillingMode, DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { PutCommand, GetCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 
 ///////////////////////////////////////////////
