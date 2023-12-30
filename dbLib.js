@@ -63,8 +63,8 @@ export async function createDB(tableName) {
   const docClient = DynamoDBDocumentClient.from(client);
   
   // Teste si la base de données existe déjà 
-  const command = new ListTablesCommand({});
-  const listTables = await client.send(command);
+  const listCommand = new ListTablesCommand({});
+  const listTables = await client.send(listCommand);
   console.log('Tables list = '+listTables);
   if (tableName in listTables) {
     // Suppression de la base de données
@@ -87,9 +87,9 @@ export async function createDB(tableName) {
       { AttributeName: "Activity", KeyType: "RANGE" },
     ],
   };
-  command = new CreateTableCommand(params);
+  const createCommand = new CreateTableCommand(params);
   console.log('Database'+tableName+' will be create, it may take a few seconds...');
-  const response = await docClient.send(command);
+  const response = await docClient.send(createCommand);
   return response;
 }
 
