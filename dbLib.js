@@ -11,7 +11,7 @@ export default async function addDB() {
   const docClient = DynamoDBDocumentClient.from(client);
   // Définir les paramètres de la requête
   const params = {
-    TableName: tableName,
+    TableName: stravaDB,
     Item: {
       // The preceding KeySchema defines 'title' as our sort (RANGE) key, so 'title'
       // is required.
