@@ -5,6 +5,7 @@ import { PutCommand, GetCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dyn
 // Ajouter un élément à StravaDB
 // **** WIP  ****
 export default async function addItemDB(item) {
+  console.log('*** addItemDB in dbLib.js')
   // Spécifier la région
   const config = {region: 'eu-west-3'};
   // Créer un client DynamoDB
