@@ -65,6 +65,7 @@ export async function createDB(tableName) {
   // Teste si la base de données existe déjà 
   const command = new ListTablesCommand({});
   const listTables = await client.send(command);
+  console.log('Tables list = '+listTables);
   if (tableName in listTables) {
     // Suppression de la base de données
     const command = new DeleteTableCommand({ TableName: tableName });
@@ -75,7 +76,7 @@ export async function createDB(tableName) {
   // Création de la base de données
   // Définir les paramètres de la requête
   const params = {
-    TableName: dbName, // Le nom de la table DynamoDB
+    TableName: tableName, // Le nom de la table DynamoDB
     BillingMode: BillingMode.PAY_PER_REQUEST,
     AttributeDefinitions: [
       { AttributeName: "ID", AttributeType: "N" },
