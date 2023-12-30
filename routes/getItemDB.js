@@ -13,8 +13,8 @@ export default getItemDBRouter.get("/", (req, res) => {
   .then((response) => {
     console.log('response "brute": ' + response);
     console.log('response "JSON.Stringify" = ' + JSON.stringify(response));
-    console.log('response.Activity "brute": ' + response.Activity);
-    console.log('response.Activity "JSON.Stringify" = ' + JSON.stringify(response.Activity));
+    console.log('response.Item "brute": ' + response.Item);
+    console.log('response.Item "JSON.Stringify" = ' + JSON.stringify(response.Item));
     // res.send(response.Activity);
     res.send(response);
   }
