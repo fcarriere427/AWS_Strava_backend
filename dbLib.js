@@ -1,5 +1,5 @@
 // Importer les modules nécessaires à l'accès à DynamoDB
-import { CreateTableCommand, DeleteTableCommand, BillingMode, DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { CreateTableCommand, DeleteTableCommand, ListTablesCommand, BillingMode, DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { PutCommand, GetCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 
 ///////////////////////////////////////////////
@@ -63,8 +63,9 @@ export async function createDB(tableName) {
   const docClient = DynamoDBDocumentClient.from(client);
   
   // Teste si la base de données existe déjà 
-  var existing_tables = docClient.list_tables()['TableNames'];
-  if (tableName in existing_tables) {
+  const command = new ListTablesCommand({});
+  const listTables = await client.send(command);
+  if (tableName in listTables) {
     // Suppression de la base de données
     const command = new DeleteTableCommand({ TableName: tableName });
     const response = await client.send(command);
@@ -85,7 +86,7 @@ export async function createDB(tableName) {
       { AttributeName: "Activity", KeyType: "RANGE" },
     ],
   };
-  const command = new CreateTableCommand(params);
+  command = new CreateTableCommand(params);
   console.log('Database'+tableName+' will be create, it may take a few seconds...');
   const response = await docClient.send(command);
   return response;
