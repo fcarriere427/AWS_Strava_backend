@@ -4,7 +4,7 @@ import { PutCommand, GetCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dyn
 
 // Ajouter un élément à StravaDB
 // **** WIP  ****
-export default async function addItemDB(item) {
+export default async function addItemDB(activity) {
   console.log('*** addItemDB in dbLib.js')
   // Spécifier la région
   const config = {region: 'eu-west-3'};
@@ -16,8 +16,7 @@ export default async function addItemDB(item) {
   const params = {
     TableName: "StravaDB", // Le nom de la table DynamoDB
     Item: {
-      ID: 0,
-      Activity: item
+      Activity: activity
     },
   }
   const command = new PutCommand(params);
@@ -25,7 +24,7 @@ export default async function addItemDB(item) {
   return response;
 }
 
-// TMP : pour l'instant, ne fait que lire l'élément [0]
+// renvoie l'activité Strava enregistrée au num ID (!! différent de l'ID Strava)
 export async function getItemDB(numID) {
     console.log('*** getItemDB in dbLib.js')
   // Spécifier la région
