@@ -69,7 +69,6 @@ export async function createDB(tableName) {
   console.log('Tables list = '+JSON.stringify(listTables.TableNames));
   if (listTables.TableNames.includes(tableName)) {
     // Suppression de la base de données
-    console.log('Database '+tableName+' will be delete');
     const command = new DeleteTableCommand({ TableName: tableName });
     const response = await client.send(command);
     console.log('Database '+tableName+' has been deleted');
@@ -90,7 +89,7 @@ export async function createDB(tableName) {
     ],
   };
   const createCommand = new CreateTableCommand(params);
-  console.log('Database '+tableName+' will be create, it may take a few seconds...');
+  console.log('Database '+tableName+' will be created, it may take a few seconds...');
   const response = await docClient.send(createCommand);
   return response;
 }
