@@ -11,8 +11,8 @@ getItemDBRouter.get("/", (req, res) => {
   console.log('*** getItemDB.js : appel de getItemDB in dbLib.js');
   getItemDB()
   .then((response) => {
-    console.log('response: ' + response);
-    // console.log('response = ' + JSON.stringify(response));
+    //console.log('response: ' + response);
+    console.log('response = ' + JSON.stringify(response));
     res.send(response);
     }
   )
