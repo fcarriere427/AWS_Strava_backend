@@ -65,7 +65,7 @@ export async function createDB(tableName) {
   // Teste si la base de données existe déjà 
   const listCommand = new ListTablesCommand({});
   const listTables = await client.send(listCommand);
-  console.log('Tables list = '+listTables);
+  console.log('Tables list = '+JSON.stringify(listTables));
   if (tableName in listTables) {
     // Suppression de la base de données
     const command = new DeleteTableCommand({ TableName: tableName });
@@ -88,7 +88,7 @@ export async function createDB(tableName) {
     ],
   };
   const createCommand = new CreateTableCommand(params);
-  console.log('Database'+tableName+' will be create, it may take a few seconds...');
+  console.log('Database '+tableName+' will be create, it may take a few seconds...');
   const response = await docClient.send(createCommand);
   return response;
 }
