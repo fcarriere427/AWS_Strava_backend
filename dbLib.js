@@ -1,6 +1,6 @@
 // Importer les modules nécessaires à l'accès à DynamoDB
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { PutCommand, GetCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
+import { PutCommand, GetCommand, CreateTableCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 
 // Ajouter un élément à StravaDB
 // **** WIP  ****
@@ -45,6 +45,36 @@ export async function getItemDB(numID) {
   const response = await docClient.send(command);
   return response;
 }
+
+// Créer la base de données (ici : StravaDB)
+export async function createDB(dbName) {
+  console.log('*** createDB in dbLib.js')
+  // Spécifier la région
+  const config = {region: 'eu-west-3'};
+  // Créer un client DynamoDB
+  const client = new DynamoDBClient(config);
+  // Créer un client document DynamoDB
+  const docClient = DynamoDBDocumentClient.from(client);
+  // Définir les paramètres de la requête
+  const params = {
+    TableName: dbName, // Le nom de la table DynamoDB
+    AttributeDefinitions: [
+      { AttributeName: "ID", AttributeType: "N" },
+      { AttributeName: "Activity", AttributeType: "S" },
+    ],
+    KeySchema: [
+      { AttributeName: "ID", KeyType: "HASH" },
+      { AttributeName: "Activity", KeyType: "RANGE" },
+    ],
+  };
+  const command = new CreateTableCommand(params);
+  console.log('database creation, it may take a few seconds...');
+  const response = await docClient.send(command);
+  return response;
+}
+
+
+
 
 
 /// for QueryCommand: 
