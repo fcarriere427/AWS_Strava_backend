@@ -4,7 +4,7 @@ import { PutCommand, QueryCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-d
 
 // Ajouter un élément à StravaDB
 // **** WIP  ****
-export default async function addDB() {
+export default async function addItemDB() {
   // Spécifier la région
   const config = {region: 'eu-west-3'};
   // Créer un client DynamoDB
@@ -28,7 +28,7 @@ export default async function addDB() {
 }
 
 // TMP : pour l'instant, ne fait que lire l'élément [0]
-export async function callDB() {
+export async function getItemDB() {
   // Spécifier la région
   const config = {region: 'eu-west-3'};
   // Créer un client DynamoDB
