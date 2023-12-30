@@ -87,8 +87,8 @@ export async function createDB(tableName) {
     ],
   };
   const createCommand = new CreateTableCommand(params);
-  console.log('Database '+tableName+' will be created, it may take a few seconds...');
   const response = await docClient.send(createCommand);
+  console.log('Database '+tableName+' has been created');
   return response;
 }
 
