@@ -1,15 +1,15 @@
 // Importer le module express
 import express from "express";
 // Importer la librairie Strava perso
-import getLastActivity from "../stravaLib.js";
+import addDB from "../dbLib.js";
 
 // Créer un routeur express
-const getLastStravaActivityRouter = express.Router();
+const addDBRouter = express.Router();
 
 // Envoyer la réponse (attention "/" car le reste de l'URL est géré par le routeur "routes.js" à la racine)
-getLastStravaActivityRouter.get("/", (req, res) => {
-  console.log('*** getLastStravaActivity.js : appel de getLastActivity in stravaLib.js');
-  getLastActivity()
+addDBRouter.get("/", (req, res) => {
+  console.log('*** addDB.js : appel de addDB in dbLib.js');
+  addDB()
   .then((response) => {
     res.send(response);
     }
@@ -17,4 +17,4 @@ getLastStravaActivityRouter.get("/", (req, res) => {
 });
 
 // Exporter le routeur
-export default getLastStravaActivityRouter;
+export default addDBRouter;
