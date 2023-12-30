@@ -40,5 +40,5 @@ export async function getItemDB() {
   };
   const command = new QueryCommand(params);
   const response = await docClient.send(command);
-  return response.Item;
+  return response;
 }

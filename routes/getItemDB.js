@@ -12,8 +12,8 @@ getItemDBRouter.get("/", (req, res) => {
   getItemDB()
   .then((response) => {
     //console.log('response: ' + response);
-    console.log('response = ' + JSON.stringify(response));
-    res.send(response);
+    console.log('response.Item = ' + JSON.stringify(response.Item));
+    res.send(response.Item);
     }
   )
 });
