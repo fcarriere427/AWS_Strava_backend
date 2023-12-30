@@ -17,7 +17,7 @@ export default async function addDB() {
     Item: {
       // The preceding KeySchema defines 'title' as our sort (RANGE) key, so 'title'
       // is required.
-      ID: "0",
+      ID: 0,
       // test
       texte_test: "Florian"
     },
