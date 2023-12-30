@@ -11,10 +11,10 @@ export default getItemDBRouter.get("/", (req, res) => {
   console.log('*** getItemDB.js : appel de getItemDB in dbLib.js');
   getItemDB()
   .then((response) => {
-    //console.log('response: ' + response);
-    // console.log('response.Activity = ' + JSON.stringify(response.Activity));
+    console.log('response "brute": ' + response);
+    console.log('response "JSON.Stringify" = ' + JSON.stringify(response));
+    console.log('response.Activity "JSON.Stringify" = ' + JSON.stringify(response.Activity));
     // res.send(response.Activity);
-    console.log('response = ' + JSON.stringify(response));
     res.send(response);
   }
   )
