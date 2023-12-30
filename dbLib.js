@@ -2,8 +2,9 @@
 import { CreateTableCommand, DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { PutCommand, GetCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 
+///////////////////////////////////////////////
 // Ajouter un élément à StravaDB
-// **** WIP  ****
+///////////////////////////////////////////////
 export default async function addItemDB(activity) {
   console.log('*** addItemDB in dbLib.js')
   // Spécifier la région
@@ -26,7 +27,9 @@ export default async function addItemDB(activity) {
   return response;
 }
 
+///////////////////////////////////////////////
 // renvoie l'activité Strava enregistrée au num ID (!! différent de l'ID Strava)
+///////////////////////////////////////////////
 export async function getItemDB(numID) {
     console.log('*** getItemDB in dbLib.js')
   // Spécifier la région
@@ -46,7 +49,9 @@ export async function getItemDB(numID) {
   return response;
 }
 
-// Créer la base de données (ici : StravaDB)
+///////////////////////////////////////////////
+// Créer la base de données (ici : StravaDB) //
+///////////////////////////////////////////////
 export async function createDB(dbName) {
   console.log('*** createDB in dbLib.js')
   // Spécifier la région
@@ -58,6 +63,7 @@ export async function createDB(dbName) {
   // Définir les paramètres de la requête
   const params = {
     TableName: dbName, // Le nom de la table DynamoDB
+    BillingMode: BillingMode.PAY_PER_REQUEST,
     AttributeDefinitions: [
       { AttributeName: "ID", AttributeType: "N" },
       { AttributeName: "Activity", AttributeType: "S" },
