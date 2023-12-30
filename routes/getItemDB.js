@@ -1,7 +1,7 @@
 // Importer le module express
 import express from "express";
 // Importer la librairie Strava perso
-import getItemDB from "../dbLib.js";
+import { getItemDB } from "../dbLib.js";
 
 // Créer un routeur express
 const getItemDBRouter = express.Router();
