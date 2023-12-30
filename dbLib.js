@@ -70,6 +70,7 @@ export async function createDB(tableName) {
     const deleteCommand = new DeleteTableCommand({ TableName: tableName });
     const response = await client.send(deleteCommand);
     console.log('Database '+tableName+' has been deleted');
+    console.log('repsonse = '+response);
   }
 
   // Création de la base de données
@@ -88,7 +89,7 @@ export async function createDB(tableName) {
   };
   const createCommand = new CreateTableCommand(params);
   const response = await docClient.send(createCommand);
-  console.log('Database '+tableName+' has been created');
+  console.log('Database '+tableName+' has been created  ');
   return response;
 }
 
