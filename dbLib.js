@@ -66,7 +66,7 @@ export async function createDB(tableName) {
   const listCommand = new ListTablesCommand({});
   const listTables = await client.send(listCommand);
   console.log('Tables list = '+JSON.stringify(listTables));
-  if (tableName in listTables) {
+  if (tableName in listTables.TableNames) {
     // Suppression de la base de données
     const command = new DeleteTableCommand({ TableName: tableName });
     const response = await client.send(command);
