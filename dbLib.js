@@ -17,7 +17,7 @@ export default async function addItemDB(activity) {
   const params = {
     TableName: "StravaDB", // Le nom de la table DynamoDB
     Item: {
-      ID: numID
+      ID: numID,
       Activity: activity
     },
   }
