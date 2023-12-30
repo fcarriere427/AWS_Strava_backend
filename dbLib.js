@@ -26,7 +26,7 @@ export default async function addItemDB(item) {
 }
 
 // TMP : pour l'instant, ne fait que lire l'élément [0]
-export async function getItemDB() {
+export async function getItemDB(numID) {
     console.log('*** getItemDB in dbLib.js')
   // Spécifier la région
   const config = {region: 'eu-west-3'};
@@ -37,23 +37,12 @@ export async function getItemDB() {
   // Définir les paramètres de la requête
   const params = {
     TableName: "StravaDB", // Le nom de la table DynamoDB
-    Key:{ID: 0},
+    Key:{ID: numID},
     ConsistentRead: true,
   };
   const command = new GetCommand(params);
   const response = await docClient.send(command);
   return response;
-
-  // const getCommand = new GetCommand({
-  //   TableName: "StravaDB",
-  //   Key: {
-  //     ID: 0
-  //   },
-  //   ConsistentRead: true,
-  // });
-  // const getResponse = await docClient.send(getCommand);
-  // console.log(`Got the movie: ${JSON.stringify(getResponse.Item)}`);
-  // return 0;
 }
 
 
