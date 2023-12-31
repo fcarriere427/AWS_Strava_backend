@@ -115,13 +115,13 @@ export async function deleteDB(tableName) {
     const deleteCommand = new DeleteTableCommand({ TableName: tableName });
     const response = await client.send(deleteCommand);
      // Wait for table to be created
-     const waiterConfig = {
+    const waiterConfig = {
       client : docClient,
       maxWaitTime : 30,
     };
-    try { const results = await waitUntilTableExists(waiterConfig, {TableName: tableName}); } 
-    catch (e) { body = e; }
-    if (results.state != 'SUCCESS') {
+    console.log('Database '+tableName+' is being deleted');
+    const results = await waitUntilTableExists(waiterConfig, {TableName: tableName}); } 
+    while (results.state != 'SUCCESS') {
       throw `Table Deletion Delayed - ${results.reason}`;
     }
     console.log('Database '+tableName+' has been deleted');
