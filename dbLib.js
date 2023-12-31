@@ -72,11 +72,9 @@ export async function createDB(tableName) {
     BillingMode: BillingMode.PAY_PER_REQUEST,
     AttributeDefinitions: [
       { AttributeName: "ID", AttributeType: "N" },
-      { AttributeName: "Activity", AttributeType: "M" },
     ],
     KeySchema: [
       { AttributeName: "ID", KeyType: "HASH" },
-      { AttributeName: "Activity", KeyType: "RANGE" },
     ],
   };
   const createCommand = new CreateTableCommand(params);
