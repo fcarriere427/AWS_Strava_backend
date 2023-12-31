@@ -106,10 +106,11 @@ export async function deleteDB(tableName) {
     const response = await client.send(deleteCommand);
     console.log('Database '+tableName+' has been deleted');
     console.log('response = '+JSON.stringify(response));
+    return response;
   } else {
     console.log('Database '+tableName+' doesn\'t exist: it will then be created');
+    return JSON.parse('OK');
   }
-  return response;
 }
 
 
