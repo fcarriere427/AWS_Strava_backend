@@ -109,7 +109,7 @@ export async function deleteDB(tableName) {
     return response;
   } else {
     console.log('Database '+tableName+' doesn\'t exist: it will then be created');
-    return JSON.parse('OK');
+    return "OK";
   }
 }
 
