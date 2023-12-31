@@ -85,7 +85,7 @@ export async function createDB(tableName) {
   // Wait for table to be created
   const waiterConfig = {
     client : docClient,
-    maxWaitTime : 30,
+    maxWaitTime : 60,
   };
   const results = await waitUntilTableExists(waiterConfig, {TableName: tableName}); 
   if (results.state != 'SUCCESS') {
@@ -119,7 +119,7 @@ export async function deleteDB(tableName) {
     // Wait for table to be deleted
     const waiterConfig = {
       client : docClient,
-      maxWaitTime : 30,
+      maxWaitTime : 60,
     };
     const results = await waitUntilTableExists(waiterConfig, {TableName: tableName}); 
     if (results.state != 'SUCCESS') {
