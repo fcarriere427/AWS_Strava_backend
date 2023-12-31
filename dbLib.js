@@ -1,5 +1,5 @@
 // Importer les modules nécessaires à l'accès à DynamoDB
-import { CreateTableCommand, DeleteTableCommand, ListTablesCommand, BillingMode, DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { CreateTableCommand, DeleteTableCommand, waitUntilTableExists, ListTablesCommand, BillingMode, DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { PutCommand, GetCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 
 ///////////////////////////////////////////////
@@ -104,6 +104,16 @@ export async function deleteDB(tableName) {
   if (listTables.TableNames.includes(tableName)) {
     const deleteCommand = new DeleteTableCommand({ TableName: tableName });
     const response = await client.send(deleteCommand);
+     // Wait for table to be created
+     const waiterConfig = {
+      client : ddbClient,
+      maxWaitTime : 30,
+    };
+    try { const results = await waitUntilTableExists(waiterConfig, {TableName: tableName}); } 
+    catch (e) { body = e; }
+    if (results.state != 'SUCCESS') {
+      throw `Table Deletion Delayed - ${results.reason}`;
+    }
     console.log('Database '+tableName+' has been deleted');
     console.log('response = '+JSON.stringify(response));
     return response;
