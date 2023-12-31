@@ -120,7 +120,7 @@ export async function deleteDB(tableName) {
       maxWaitTime : 30,
     };
     console.log('Database '+tableName+' is being deleted');
-    const results = await waitUntilTableExists(waiterConfig, {TableName: tableName}); } 
+    const results = await waitUntilTableExists(waiterConfig, {TableName: tableName}); 
     while (results.state != 'SUCCESS') {
       throw `Table Deletion Delayed - ${results.reason}`;
     }
