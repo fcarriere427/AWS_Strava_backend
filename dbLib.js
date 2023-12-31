@@ -3,9 +3,9 @@ import { CreateTableCommand, DeleteTableCommand, waitUntilTableExists, waitUntil
 import { PutCommand, GetCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 
 ///////////////////////////////////////////////
-// Ajouter un élément à StravaDB
+// Ajouter un élément à la table
 ///////////////////////////////////////////////
-export default async function addItemDB(activity) {
+export default async function addItemDB(activity, tableName) {
   console.log('*** addItemDB in dbLib.js');
   // Spécifier la région
   const config = {region: 'eu-west-3'};
@@ -17,7 +17,7 @@ export default async function addItemDB(activity) {
   var numID = Math.floor(Math.random()*100);
   console.log('ID for this new Activity = ' + numID);
   const params = {
-    TableName: "StravaDB", // Le nom de la table DynamoDB
+    TableName: tableName,
     Item: {
       ID: numID,
       Activity: activity
@@ -29,9 +29,9 @@ export default async function addItemDB(activity) {
 }
 
 ///////////////////////////////////////////////
-// renvoie l'activité Strava enregistrée au num ID (!! différent de l'ID Strava)
+// renvoie l'élément avec la clé ID (!! différent de l'ID Strava)
 ///////////////////////////////////////////////
-export async function getItemDB(numID) {
+export async function getItemDB(numID, tableName) {
     console.log('*** getItemDB in dbLib.js')
   // Spécifier la région
   const config = {region: 'eu-west-3'};

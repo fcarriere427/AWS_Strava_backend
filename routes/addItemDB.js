@@ -7,13 +7,16 @@ import getLastActivity from "../stravaLib.js";
 // Créer un routeur express
 const addItemDBRouter = express.Router();
 
+// Nom de la table
+const tableName = "StravaDB";
+
 // Envoyer la réponse (attention "/" car le reste de l'URL est géré par le routeur "routes.js" à la racine)
 export default addItemDBRouter.get("/", async (req, res) => {
   // console.log('*** addItemDB.js : appel de createDB in dbLib.js');
-  // var db = await createDB("StravaDB");
+  // var db = await createDB(tableName);
   console.log('*** addItemDB.js : appel de getLastactivity in stravaLib.js');
   var activity = await getLastActivity();
   console.log('*** addItemDB.js : appel de addItemDB in dbLib.js');
-  var response = await addItemDB(activity);
+  var response = await addItemDB(activity, tableName);
   res.send(response);
 });
