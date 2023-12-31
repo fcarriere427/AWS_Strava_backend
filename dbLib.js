@@ -7,7 +7,6 @@ import { PutCommand, GetCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dyn
 ///////////////////////////////////////////////
 export default async function addItemDB(activity) {
   console.log('*** addItemDB in dbLib.js');
-  console.log('Activity in addItemDB = ' + activity);
   // Spécifier la région
   const config = {region: 'eu-west-3'};
   // Créer un client DynamoDB
@@ -52,8 +51,8 @@ export async function getItemDB(numID) {
 }
 
 ///////////////////////////////////////////////
-// Créer la base de données (ici : StravaDB) //
-// Efface la base de données si elle existe déjà
+// Créer la table
+// NB : l'efface si une table du même nom existe déjà
 ///////////////////////////////////////////////
 export async function createDB(tableName) {
   console.log('*** createDB in dbLib.js')
@@ -81,7 +80,7 @@ export async function createDB(tableName) {
   };
   const createCommand = new CreateTableCommand(params);
   const response = await docClient.send(createCommand);
-  console.log('Database '+tableName+' is being created');
+  console.log('Database '+tableName+' is being created...');
   // Wait for table to be created
   const waiterConfig = {
     client : docClient,
@@ -96,7 +95,7 @@ export async function createDB(tableName) {
 }
 
 //////////////////////////////////////////////
-// Efface la base de données si elle existe déjà
+// Efface la table
 ///////////////////////////////////////////////
 export async function deleteDB(tableName) {
   console.log('*** deleteDB in dbLib.js')
@@ -128,7 +127,7 @@ export async function deleteDB(tableName) {
     console.log('Database '+tableName+' has been deleted');
     return response;
   } else {
-    console.log('Database '+tableName+' doesn\'t exist: it will then be created');
+    console.log('Database '+tableName+' doesn\'t exist');
     return "OK";
   }
 }
