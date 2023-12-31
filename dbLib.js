@@ -119,7 +119,7 @@ export async function deleteDB(tableName) {
     // Wait for table to be deleted
     const waiterConfig = {
       client : docClient,
-      maxWaitTime : 60,
+      maxWaitTime : 120,
     };
     const results = await waitUntilTableExists(waiterConfig, {TableName: tableName}); 
     if (results.state != 'SUCCESS') {
