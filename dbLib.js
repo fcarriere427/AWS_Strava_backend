@@ -62,17 +62,9 @@ export async function createDB(tableName) {
   // Créer un client document DynamoDB
   const docClient = DynamoDBDocumentClient.from(client);
   
-  // Teste si la base de données existe déjà 
-  // et la supprime si c'est le cas
-  const listCommand = new ListTablesCommand({});
-  const listTables = await client.send(listCommand);
-  if (listTables.TableNames.includes(tableName)) {
-    const deleteCommand = new DeleteTableCommand({ TableName: tableName });
-    const response = await client.send(deleteCommand);
-    console.log('Database '+tableName+' has been deleted');
-    console.log('response = '+JSON.stringify(response));
-  }
-
+  // Teste si la base de données existe déjà et la supprime si c'est le cas
+  await deleteDB(tableName);
+  
   // Création de la base de données
   // Définir les paramètres de la requête
   const params = {
@@ -93,8 +85,32 @@ export async function createDB(tableName) {
   return response;
 }
 
-
-
+//////////////////////////////////////////////
+// Efface la base de données si elle existe déjà
+///////////////////////////////////////////////
+export async function deleteDB(tableName) {
+  console.log('*** deleteDB in dbLib.js')
+  // Spécifier la région
+  const config = {region: 'eu-west-3'};
+  // Créer un client DynamoDB
+  const client = new DynamoDBClient(config);
+  // Créer un client document DynamoDB
+  const docClient = DynamoDBDocumentClient.from(client);
+  
+  // Teste si la base de données existe déjà 
+  // et la supprime si c'est le cas
+  const listCommand = new ListTablesCommand({});
+  const listTables = await client.send(listCommand);
+  if (listTables.TableNames.includes(tableName)) {
+    const deleteCommand = new DeleteTableCommand({ TableName: tableName });
+    const response = await client.send(deleteCommand);
+    console.log('Database '+tableName+' has been deleted');
+    console.log('response = '+JSON.stringify(response));
+  } else {
+    console.log('Database '+tableName+' doesn\'t exist: it will then be created');
+  }
+  return response;
+}
 
 
 /// for QueryCommand: 
