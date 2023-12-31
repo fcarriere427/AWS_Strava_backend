@@ -81,6 +81,16 @@ export async function createDB(tableName) {
   };
   const createCommand = new CreateTableCommand(params);
   const response = await docClient.send(createCommand);
+   // Wait for table to be created
+   const waiterConfig = {
+    client : docClient,
+    maxWaitTime : 30,
+  };
+  try { const results = await waitUntilTableExists(waiterConfig, {TableName: tableName}); } 
+  catch (e) { body = e; }
+  if (results.state != 'SUCCESS') {
+    throw `Table Creation Delayed - ${results.reason}`;
+  }
   console.log('Database '+tableName+' has been created  ');
   return response;
 }
@@ -106,7 +116,7 @@ export async function deleteDB(tableName) {
     const response = await client.send(deleteCommand);
      // Wait for table to be created
      const waiterConfig = {
-      client : ddbClient,
+      client : docClient,
       maxWaitTime : 30,
     };
     try { const results = await waitUntilTableExists(waiterConfig, {TableName: tableName}); } 
