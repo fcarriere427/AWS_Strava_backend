@@ -16,6 +16,6 @@ export default addItemDBRouter.get("/", async (req, res) => {
   console.log('Activity = ' + JSON.stringify(activity));
   console.log('*** addItemDB.js : appel de addItemDB in dbLib.js');
   var response = await addItemDB(activity);
-  console.log('response = ' + JSON.stringify(response));
+  console.log('response addItemDB = ' + JSON.stringify(response));
   res.send(response);
 });
