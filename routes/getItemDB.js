@@ -16,6 +16,7 @@ export default getItemDBRouter.get("/", (req, res) => {
   .then((response) => {
     //console.log('response.Item "JSON.Stringify" = ' + JSON.stringify(response.Item));
     console.log('response = ' + JSON.stringify(response));
+    console.log('response.Item = ' + JSON.stringify(response.Item));
     res.send(response.Item);
   }
   )
