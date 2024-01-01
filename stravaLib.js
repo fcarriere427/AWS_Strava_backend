@@ -1,7 +1,7 @@
 // Library perso avec fonctions "lecture http" et "save to file"
 //import httpsRequest, { saveData } from "./utils.js";
 import * as utils from "./utils.js";
-console.log('JSON.strinfigy(utils) = ' + JSON.strinfigy(utils));
+console.log('JSON.stringify(utils) = ' + JSON.stringify(utils));
 console.log('utils.httpsRequest = ' + utils.httpsRequest);
 // Fichiers locaux qui contiennent les ID et tokens Strava
 import stravaKeys from "./strava.json" assert { type: "json" };
