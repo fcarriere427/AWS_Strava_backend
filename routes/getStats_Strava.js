@@ -14,9 +14,12 @@ const getStats_Strava_Router = express.Router();
 export default getStats_Strava_Router
   .get("/", async (req, res) => {
     console.log('*** getStats_Strava.js');
+    console.log('Appel de getStats in stravaLib.js');
     var response = await getStats(id_athlete);
     console.log('Réponse envoyée');
+    /// TMP
     const nb_activities = response.all_ride_totals.count + response.all_run_totals.count + response.all_swim_totals.count;
     console.log('Nb total d\'activités = ' + nb_activities);
+    /// TMP
     res.send(response);
   });
