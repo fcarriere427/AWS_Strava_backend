@@ -1,6 +1,6 @@
 // Importer les modules nécessaires à l'accès à DynamoDB
 import { CreateTableCommand, DeleteTableCommand, waitUntilTableExists, waitUntilTableNotExists, ListTablesCommand, BillingMode, DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { PutCommand, GetCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
+import { PutCommand, GetCommand, DeleteCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 
 ///////////////////////////////////////////////
 // Ajouter un élément à la table
@@ -30,7 +30,7 @@ export default async function addItemDB(activity, tableName) {
 }
 
 ///////////////////////////////////////////////
-// renvoie l'élément avec la clé ID (!! différent de l'ID Strava)
+// renvoie l'élément avec la clé ID
 ///////////////////////////////////////////////
 export async function getItemDB(numID, tableName) {
   console.log('*** getItemDB in dbLib.js');
@@ -43,7 +43,7 @@ export async function getItemDB(numID, tableName) {
   const docClient = DynamoDBDocumentClient.from(client);
   // Définir les paramètres de la requête
   const params = {
-    TableName: "StravaDB", // Le nom de la table DynamoDB
+    TableName: tableName, // Le nom de la table DynamoDB
     Key:{ID: numID},
     ConsistentRead: true,
   };
@@ -103,7 +103,7 @@ export async function createDB(tableName) {
 }
 
 //////////////////////////////////////////////
-// Efface la table
+// Supprime la table
 ///////////////////////////////////////////////
 export async function deleteDB(tableName) {
   console.log('*** deleteDB in dbLib.js')
@@ -139,7 +139,6 @@ export async function deleteDB(tableName) {
     return "OK";
   }
 }
-
 
 /// for QueryCommand: 
 // const params = {

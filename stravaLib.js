@@ -7,11 +7,13 @@ import tokens from "./tokens.json" assert { type: "json" };
 // const strava = require('./strava.json');
 // const tokens = require('./tokens.json');
 
+const id_athlete = 10830547;
+
 // Récupération de la dernière activité 
 // voir le détail ici : https://developers.strava.com/docs/reference/#api-models-SummaryActivity
 export default async function getLastActivity() {
     // Lance la requête de récupération des activités
-    console.log('*** stravaLib.js : récupération de la dernière activité Strava');
+    console.log('*** getLastActivity in stravaLib.js');
     var accessToken = await getAccessToken()
     var options = `https://www.strava.com/api/v3/athlete/activities?page=` + 1 + `&per_page=`+ 1 + `&access_token=${accessToken}`;
     var res = await httpsRequest(options);
@@ -19,6 +21,20 @@ export default async function getLastActivity() {
     // console.log('res = ' + JSON.stringify(res));
     return(res[0]);
 }
+
+// Récupération des stats Strava
+// voir le détail ici : https://developers.strava.com/docs/reference/#api-Athletes-getStats
+export async function getStravaStats() {
+  // Lance la requête de récupération des activités
+  console.log('*** getStravaStats in stravaLib.js');
+  var accessToken = await getAccessToken()
+  var options = `https://www.strava.com/api/v3/athlete/=${id_athlete}/stats?access_token=${accessToken}`;
+  var res = await httpsRequest(options);
+  console.log('res = ' + res);
+  console.log('res = ' + JSON.stringify(res));
+  return(res[0]);
+}
+
 
 ////////////////////////////////////
 // FONCTIONS INTERNES à ce module //
