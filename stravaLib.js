@@ -60,8 +60,11 @@ export async function getAllActivities(id_athlete) {
 export function addPage(activities) {
   console.log('*** addPage in stravaLib.js');
   // Boucle sur les activités
-  console.log('activities.length = ' + activities.length);
-  res = 1;
+  const nbActivities = activities.length;
+  for(let i = 0; i < nbActivities; i++){
+    console.log(`activities[${i}] = ` + activities[i]);
+  }
+  const res = 1;
   return(res);
 }
 
