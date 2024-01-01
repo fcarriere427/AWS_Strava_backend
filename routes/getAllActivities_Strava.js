@@ -15,7 +15,7 @@ export default getAllActivities_Strava_Router
   .get("/", async (req, res) => {
     console.log('*** getAllActivities_Strava.js');
     console.log('Appel de getAllActivities');
-    var response = await getAllActivities(req.query.id, tableName)
+    var response = await getAllActivities();
     console.log('response = ' + JSON.stringify(response)); // renvoie un JSON avec les metadata en tête
     console.log('Réponse envoyée');
     res.send(response);

@@ -31,7 +31,7 @@ export async function getAllActivities() {
   var options = `https://www.strava.com/api/v3/athlete/activities?page=` + 1 + `&per_page=`+ 10 + `&access_token=${accessToken}`;
   console.log('Appel de l\'API Strava');
   var res = await httpsRequest(options);
-  return(res[0]);
+  return(res);
 }
 
 
