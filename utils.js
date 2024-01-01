@@ -37,12 +37,11 @@ export default async function httpsRequest(params, postData) {
 }
 
 export async function saveData(data, filename) {
-  console.log("Sauvegarde des nouveaux tokens...");
   return new Promise(function(resolve, reject) {
     fs.writeFile(filename, data, 'utf-8', (err) => {
         if (err) reject(err);
         else {
-          console.log("... OK, tokens sauvegardés !");
+          console.log("Sauvegarde des nouveaux tokens");
           resolve(data);
         }
     });
