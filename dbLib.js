@@ -14,8 +14,8 @@ export default async function addItemDB(activity, tableName) {
   // Créer un client document DynamoDB
   const docClient = DynamoDBDocumentClient.from(client);
   // Définir les paramètres de la requête
-  console.log('activity.id = ' + activity.id);
-  var numID = Math.floor(Math.random()*100);
+  //var numID = Math.floor(Math.random()*100);
+  var numID = Number(activity.id);
   console.log('ID for this new Activity = ' + numID);
   const params = {
     TableName: tableName,
