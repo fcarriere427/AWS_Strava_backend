@@ -15,7 +15,7 @@ export default reset_DB_Router
   .get("/", async (req, res) => {
     console.log('*** reset_DB.js');
     console.log('Appel de createTable');
-    var db = await createTable(tableName);
+    var response = await createTable(tableName);
     console.log(`Table ${tableName} détruite puis recréée`);
     res.send(response);
   });
