@@ -27,7 +27,6 @@ export default async function getLastActivity() {
 // Récupération des stats Strava
 // voir le détail ici : https://developers.strava.com/docs/reference/#api-Athletes-getStats
 export async function getStravaStats(id_athlete) {
-  // Lance la requête de récupération des activités
   console.log('*** getStravaStats in stravaLib.js');
   var accessToken = await getAccessToken()
   var options = `https://www.strava.com/api/v3/athletes/${id_athlete}/stats?access_token=${accessToken}`;
