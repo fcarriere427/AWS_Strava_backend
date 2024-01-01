@@ -37,6 +37,7 @@ export default async function httpsRequest(params, postData) {
 }
 
 export async function saveData(data, filename) {
+  console.log("*** saveData in utils.js")
   console.log("Sauvegarde des nouveaux tokens...");
   return new Promise(function(resolve, reject) {
     fs.writeFile(filename, data, 'utf-8', (err) => {
