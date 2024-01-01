@@ -1,5 +1,6 @@
 // Library perso avec fonctions "lecture http" et "save to file"
-//import httpsRequest, { saveData } from "./utils.js";
+import httpsRequest, { saveData } from "./utils.js";
+console.log('JSON.stringify(httpsRequest) = ' + JSON.stringify(httpsRequest));
 import * as utils from "./utils.js";
 console.log('JSON.stringify(utils) = ' + JSON.stringify(utils));
 console.log('utils.httpsRequest = ' + utils.httpsRequest);
