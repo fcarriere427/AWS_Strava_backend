@@ -2,6 +2,9 @@
 import httpsRequest, { saveData } from "./utils.js";
 import addItem from "./dbLib.js";
 
+// Imports du timer
+import { setTimeout } from "timers/promises";
+
 // Fichiers locaux qui contiennent les ID et tokens Strava
 import stravaKeys from "./strava.json" assert { type: "json" };
 import tokens from "./tokens.json" assert { type: "json" };
@@ -48,7 +51,7 @@ export default async function getActivities(id_athlete, nbMax) {
     var options = `https://www.strava.com/api/v3/athlete/activities?page=` + page + `&per_page=`+ nbActivitiesPerPage + `&access_token=${accessToken}`;
     var activities = await httpsRequest(options);
     // ajout des activités de la page dans la DB
-    var count = await addPage(activities);
+    count = await addPage(activities);
     nbActivities = nbActivities + count;
   }
   console.log("Nombre d'activities ajoutées = " + nbActivities);
@@ -82,7 +85,7 @@ async function addPage(activities) {
     const activity = activities[i];
     addItem(activity, tableName);
     // ajouté car si on n'attend pas, on provoque une erreur "credential" : trop rapide pour dynamoDB ??
-    await sleep(100);
+    setTimeout(100);
   }
   return(nbActivities);
 }
