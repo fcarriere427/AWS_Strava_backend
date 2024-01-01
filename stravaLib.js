@@ -41,26 +41,26 @@ export async function getAllActivities(id_athlete) {
   // Récupération du token d'accès 
   var accessToken = await getAccessToken();
   
+  console.log('Récupération des activités Strava...');
   // Boucle sur les pages
   for(let i = 0; i < nbPages; i++){
     var page = i+1;
-    console.log('Récupération des activités Strava, pour la page ' + page + ' sur ' + nbPages + '...');
+    //console.log('Récupération des activités Strava, pour la page ' + page + ' sur ' + nbPages + '...');
     var options = `https://www.strava.com/api/v3/athlete/activities?page=` + page + `&per_page=`+ nbActivitiesPerPage + `&access_token=${accessToken}`;
     var activities = await httpsRequest(options);
-    console.log('Appel de updateDB');
     var count = addPage(activities);
     nbActivities = nbActivities + count;
   }
-  console.log("on renvoie nbActivities = " + nbActivities);
+  console.log("Nombre d'activities ajoutées = " + nbActivities);
   return(nbActivities);
 }
 
 
 // Ajout de toutes les activités d'une "liste" (Strava Summary) à la DB
 export function addPage(activities) {
-  console.log('*** addPage in stravaLib.js');
-  // Boucle sur les activités
+  // Nb d'activités dans la liste passée en paramètre
   const nbActivities = activities.length;
+  // Boucle sur les activités
   for(let i = 0; i < nbActivities; i++){
     //console.log(`activities[${i}] = ` + activities[i]);
     const activity = activities[i];
