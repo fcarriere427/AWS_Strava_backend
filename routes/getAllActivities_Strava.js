@@ -18,7 +18,8 @@ export default getAllActivities_Strava_Router
     var response = await getAllActivities(id_athlete);
     console.log('response = ' + response);
     //response = JSON.parse(response);
-    response = JSON.parse(response.toString());
+    //response = JSON.parse(response.toString());
+    response = JSON.stringify(response);
     console.log('response after JSON.parse() = ' + response);
     console.log('response stringified after JSON.parse() = ' + JSON.stringify(response));
     console.log('type of response = ' + typeof(response));
