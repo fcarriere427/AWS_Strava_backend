@@ -64,7 +64,6 @@ export async function getStats(id_athlete) {
   console.log('Appel de getAccessToken');
   var accessToken = await getAccessToken()
   var options = `https://www.strava.com/api/v3/athletes/${id_athlete}/stats?access_token=${accessToken}`;
-  console.log('Appel de l\'API Strava');
   var res = await httpsRequest(options);
   return(res);
 }
