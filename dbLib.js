@@ -105,7 +105,7 @@ export async function createTable(tableName) {
 //////////////////////////////////////////////
 // Supprime la table
 ///////////////////////////////////////////////
-export async function deleteTable(tableName) {
+ async function deleteTable(tableName) {
   console.log('*** deleteTable in dbLib.js')
   // Spécifier la région
   const config = {region: 'eu-west-3'};
