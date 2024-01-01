@@ -4,8 +4,8 @@ import express from "express";
 // Importer les librairies perso
 import { getAllActivities } from "../stravaLib.js";
 
-// Nom de la table AWS
-const tableName = "StravaDB";
+// Numéro d'athlète dans Strava // to do : le récupérer à partir des credentials 
+const id_athlete = 10830547;
 
 // Créer un routeur express
 const getAllActivities_Strava_Router = express.Router();
@@ -15,8 +15,8 @@ export default getAllActivities_Strava_Router
   .get("/", async (req, res) => {
     console.log('*** getAllActivities_Strava.js');
     console.log('Appel de getAllActivities');
-    var response = await getAllActivities();
-    console.log('response = ' + JSON.stringify(response)); // renvoie un JSON avec les metadata en tête
+    var response = await getAllActivities(id_athlete);
+    //console.log('response = ' + JSON.stringify(response)); // renvoie un JSON avec les metadata en tête
     console.log('Réponse envoyée');
     res.send(response);
   });
