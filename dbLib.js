@@ -6,7 +6,7 @@ import { PutCommand, GetCommand, DeleteCommand, DynamoDBDocumentClient } from "@
 // Ajouter un élément à la table
 ///////////////////////////////////////////////
 export default async function addItem(activity, tableName) {
-  console.log('*** addItem in dbLib.js');
+  //console.log('*** addItem in dbLib.js');
   // Spécifier la région
   const config = {region: 'eu-west-3'};
   // Créer un client DynamoDB
@@ -16,7 +16,7 @@ export default async function addItem(activity, tableName) {
   // Définir les paramètres de la requête
   //var numID = Math.floor(Math.random()*100);
   var numID = Number(activity.id);
-  console.log('ID for this new Activity = ' + numID);
+  //console.log('ID for this new Activity = ' + numID);
   const params = {
     TableName: tableName,
     Item: {
