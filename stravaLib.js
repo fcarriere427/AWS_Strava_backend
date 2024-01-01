@@ -22,8 +22,8 @@ const tableName = "StravaDB";
 export default async function getActivities(id_athlete, nbMax) {
   console.log('*** getActivities in stravaLib.js');
   // Initialisation des variables selon l'usage
-  const nbStravaActivities = 0;
-  const nbPages = 0;
+  var nbStravaActivities = 0;
+  var nbPages = 0;
   if (nbMax == 0) {// pour avoir toutes les activités
     // Calcul du nb de pages Strava qu'il faut requêter
     const stats = await getStats(id_athlete);
