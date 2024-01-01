@@ -30,7 +30,7 @@ export default async function addItem(activity, tableName) {
   const command = new PutCommand(params);
   const response = await docClient.send(command);
   // ajouté car si on n'attend pas, on provoque une erreur "credential" en cas d'écriture en masse : trop rapide pour dynamoDB ??
-  setTimeout(200);
+  setTimeout(1000);
   return response;
 }
 
