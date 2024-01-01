@@ -34,8 +34,6 @@ export default async function addItemDB(activity, tableName) {
 export async function getItemDB(numID, tableName) {
   console.log('*** getItemDB in dbLib.js');
   numID = Number(numID);
-  console.log('numID = ' + numID);
-  console.log('type of numID = ' + typeof(numID));
   // Spécifier la région
   const config = {region: 'eu-west-3'};
   // Créer un client DynamoDB
@@ -52,6 +50,12 @@ export async function getItemDB(numID, tableName) {
   const response = await docClient.send(command);
   return response;
 }
+
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+// Fonctions moins utiles
+///////////////////////////////////////////////
+///////////////////////////////////////////////
 
 ///////////////////////////////////////////////
 // Créer la table

@@ -14,9 +14,8 @@ export default getItemDBRouter.get("/", (req, res) => {
   console.log('*** getItemDB.js : appel de getItemDB in dbLib.js');
   getItemDB(req.query.id, tableName)
   .then((response) => {
-    //console.log('response.Item "JSON.Stringify" = ' + JSON.stringify(response.Item));
-    console.log('response = ' + JSON.stringify(response));
-    console.log('response.Item = ' + JSON.stringify(response.Item));
+    //console.log('response = ' + JSON.stringify(response)); // renvoie un JSON avec les metadata en tête
+    //console.log('response.Item = ' + JSON.stringify(response.Item)); // renvoie le JSON de l'activité
     res.send(response.Item);
   }
   )
