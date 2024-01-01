@@ -16,7 +16,6 @@ export default async function getLastActivity() {
     console.log('*** getLastActivity in stravaLib.js');
     var accessToken = await getAccessToken()
     var options = `https://www.strava.com/api/v3/athlete/activities?page=` + 1 + `&per_page=`+ 1 + `&access_token=${accessToken}`;
-    console.log('Appel de l\'API Strava');
     var res = await httpsRequest(options);
     // console.log('res = ' + JSON.stringify(res));
     return(res[0]);
@@ -45,7 +44,6 @@ export async function getAllActivities(id_athlete) {
     var page = i+1;
     console.log('Récupération des activités Strava, pour la page ' + page + ' sur ' + nbPages + '...');
     var options = `https://www.strava.com/api/v3/athlete/activities?page=` + page + `&per_page=`+ nbActivitiesPerPage + `&access_token=${accessToken}`;
-    console.log('Appel de l\'API Strava');
     var activities = await httpsRequest(options);
     console.log('Appel de updateDB');
   ///////////////////////
@@ -113,8 +111,7 @@ async function getAccessToken() {
             }
       }
       // Lance la requête de renouvellement de l'access_token
-      console.log('Appel de l\'API Strava');
-      await httpsRequest(options,body)
+        await httpsRequest(options,body)
       // Met à jours les clés Strava (dans le fichier ./keys/strava_keys.json)
       .then((res) => {
         // On renouvelles les tokens locaux
