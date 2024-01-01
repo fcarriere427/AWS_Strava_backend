@@ -2,9 +2,6 @@
 import { CreateTableCommand, DeleteTableCommand, waitUntilTableExists, waitUntilTableNotExists, ListTablesCommand, BillingMode, DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { PutCommand, GetCommand, DeleteCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 
-// Imports du timer
-import { setTimeout } from "timers/promises";
-
 ///////////////////////////////////////////////
 // Ajouter un élément à la table
 ///////////////////////////////////////////////
@@ -29,8 +26,6 @@ export default async function addItem(activity, tableName) {
   }
   const command = new PutCommand(params);
   const response = await docClient.send(command);
-  // ajouté car si on n'attend pas, on provoque une erreur "credential" en cas d'écriture en masse : trop rapide pour dynamoDB ??
-  setTimeout(1000);
   return response;
 }
 
