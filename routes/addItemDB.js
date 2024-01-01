@@ -19,5 +19,6 @@ export default addItemDBRouter
     var activity = await getLastActivity();
     console.log('*** addItemDB.js : appel de addItemDB in dbLib.js');
     var response = await addItemDB(activity, tableName);
+    console.log('Réponse envoyée');
     res.send(response);
   });
