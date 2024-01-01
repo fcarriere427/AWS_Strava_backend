@@ -23,6 +23,6 @@ export default getStravaStatsRouter
     var response = await getStravaStats(id_athlete);
     console.log('Réponse envoyée');
     // console.log('Nb total d\'activités = ' + response.all_ride_totals.count + response.all_run_totals.count + response.all_swin_totals.count);
-    console.log('test = ' + response.biggest_ride_distance);
+    console.log('test = ' + response.all_ride_totals.count);
     res.send(response);
   });
