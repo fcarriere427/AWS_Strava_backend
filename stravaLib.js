@@ -62,7 +62,9 @@ export function addPage(activities) {
   // Boucle sur les activités
   const nbActivities = activities.length;
   for(let i = 0; i < nbActivities; i++){
-    console.log(`activities[${i}] = ` + activities[i]);
+    //console.log(`activities[${i}] = ` + activities[i]);
+    const activity = activities[i];
+    addItem(activity, tableName);
   }
   const res = 1;
   return(res);
