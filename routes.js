@@ -8,7 +8,7 @@ import getActivities_Strava_Router from './routes/getActivities_Strava.js'
 function routes(app) {
   // routes to Strava API
   app.use("/strava/getStats", getStats_Strava_Router);
-  app.use("/strava/getAllActivities", getActivities_Strava_Router);
+  app.use("/strava/getActivities", getActivities_Strava_Router);
   // routes to AWS DB
   app.use("/db/addItem", addItem_DB_Router);
   app.use("/db/getItem", getItem_DB_Router);
