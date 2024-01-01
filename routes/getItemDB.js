@@ -12,7 +12,7 @@ const tableName = "StravaDB";
 // Envoyer la réponse (attention "/" car le reste de l'URL est géré par le routeur "routes.js" à la racine)
 export default getItemDBRouter.get("/", (req, res) => {
   console.log('*** getItemDB.js : appel de getItemDB in dbLib.js');
-  getItemDB(0, tableName)
+  getItemDB(req.query.id, tableName)
   .then((response) => {
     //console.log('response.Item "JSON.Stringify" = ' + JSON.stringify(response.Item));
     console.log('response = ' + JSON.stringify(response));
