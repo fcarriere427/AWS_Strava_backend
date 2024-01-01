@@ -22,9 +22,7 @@ export default getStravaStatsRouter
     console.log('*** getAllStravaActivities.js');
     var response = await getStravaStats(id_athlete);
     console.log('Réponse envoyée');
-    console.log('Nb total d\'activités Ride = ' + response.all_ride_totals.count);
-    console.log('Nb total d\'activités Run = ' + response.all_run_totals.count);
-    console.log('Nb total d\'activités Swim = ' + response.all_swim_totals.count);
-    console.log('Nb total d\'activités = ' + response.all_ride_totals.count + response.all_run_totals.count + response.all_swim_totals.count);
+    const nb_activities = response.all_ride_totals.count + response.all_run_totals.count + response.all_swim_totals.count;
+    console.log('Nb total d\'activités = ' + nb_activities);
     res.send(response);
   });
