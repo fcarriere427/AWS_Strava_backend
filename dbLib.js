@@ -88,7 +88,7 @@ export async function createTable(tableName) {
   };
   const createCommand = new CreateTableCommand(params);
   const response = await docClient.send(createCommand);
-  console.log('Database '+tableName+' is being created...');
+  console.log('Table '+tableName+' is being created...');
   // Wait for table to be created
   const waiterConfig = {
     client : docClient,
@@ -98,7 +98,7 @@ export async function createTable(tableName) {
   if (results.state != 'SUCCESS') {
     throw `Table Creation Delayed - ${results.reason}`;
   }
-  console.log('Database '+tableName+' has been created');
+  console.log('Table '+tableName+' has been created');
   return response;
 }
 
@@ -119,10 +119,10 @@ export async function createTable(tableName) {
   const listCommand = new ListTablesCommand({});
   const listTables = await client.send(listCommand);
   if (listTables.TableNames.includes(tableName)) {
-    console.log('Database '+tableName+' does exist: it will then be deleted');
+    console.log('Table '+tableName+' does exist: it will then be deleted');
     const deleteCommand = new DeleteTableCommand({ TableName: tableName });
     const response = await client.send(deleteCommand);
-    console.log('Database '+tableName+' is being deleted...');
+    console.log('Table '+tableName+' is being deleted...');
     // Wait for table to be deleted
     const waiterConfig = {
       client : docClient,
@@ -132,10 +132,10 @@ export async function createTable(tableName) {
     if (results.state != 'SUCCESS') {
       throw `Table Deletion Delayed - ${results.reason}`;
     }
-    console.log('Database '+tableName+' has been deleted');
+    console.log('Table '+tableName+' has been deleted');
     return response;
   } else {
-    console.log('Database '+tableName+' doesn\'t exist');
+    console.log('Table '+tableName+' doesn\'t exist');
     return "OK";
   }
 }

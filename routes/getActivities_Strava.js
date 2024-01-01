@@ -17,7 +17,7 @@ export default getActivities_Strava_Router
   .get("/", async (req, res) => {
     console.log('*** getAllActivities_Strava.js');
     console.log('Appel de getActivities');
-    var response = await getActivities(id_athlete,req.nb);
+    var response = await getActivities(id_athlete,req.query.nb);
     response = JSON.stringify(response);
     console.log(`StravaDB mise à jour avec ${response} activité(s)`);
     res.send(response);
