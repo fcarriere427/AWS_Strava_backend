@@ -8,6 +8,9 @@ import tokens from "./tokens.json" assert { type: "json" };
 // const strava = require('./strava.json');
 // const tokens = require('./tokens.json');
 
+// Nom de la table dans AWS DynamoDB
+const tableName = "StravaDB";
+
 /////////////////////////
 // FONCTIONS EXPOSEES  //
 /////////////////////////
