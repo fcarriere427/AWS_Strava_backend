@@ -32,8 +32,8 @@ export async function getAllActivities(id_athlete) {
   const nbActivitiesPerPage = 100;
   // Calcul du nb de pages Strava qu'il faut requêter
   const stats = await getStats(id_athlete);
-  const nb_activities = stats.all_ride_totals.count + stats.all_run_totals.count + stats.all_swim_totals.count;
-  const nbPages = Math.floor(nb_activities/100) + 1; // il ne faut pas dépasser 1 page de plus, sinon Strava plante
+  const nbStravaActivities = stats.all_ride_totals.count + stats.all_run_totals.count + stats.all_swim_totals.count;
+  const nbPages = Math.floor(nbStravaActivities/100) + 1; // il ne faut pas dépasser 1 page de plus, sinon Strava plante
   console.log("nbPages = " + nbPages);
   // Récupération du token d'accès 
   var accessToken = await getAccessToken();
