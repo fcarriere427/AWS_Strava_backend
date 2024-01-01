@@ -1,5 +1,7 @@
-// Library perso avec fonctions "lecture http" et "save to file"
+// Imports des librairies perso
 import httpsRequest, { saveData } from "./utils.js";
+import { addItem } from "./dbLib.js";
+
 // Fichiers locaux qui contiennent les ID et tokens Strava
 import stravaKeys from "./strava.json" assert { type: "json" };
 import tokens from "./tokens.json" assert { type: "json" };
@@ -46,16 +48,22 @@ export async function getAllActivities(id_athlete) {
     var options = `https://www.strava.com/api/v3/athlete/activities?page=` + page + `&per_page=`+ nbActivitiesPerPage + `&access_token=${accessToken}`;
     var activities = await httpsRequest(options);
     console.log('Appel de updateDB');
-  ///////////////////////
-  // TO DO 
-  /////////////////////////
-    var count = dbFun.updateDB(activities, page);
+    var count = addPage(activities);
     nbActivities = nbActivities + count;
   }
   console.log("on renvoie nbActivities = " + nbActivities);
   return(nbActivities);
 }
 
+
+// Ajout des activités d'une liste à la DB
+export function addPage(activities) {
+  console.log('*** addPage in stravaLib.js');
+  // Boucle sur les activités
+  console.log('activities.length = ' + activities.length);
+  res = 1;
+  return(res);
+}
 
 // Récupération des stats Strava
 // voir le détail ici : https://developers.strava.com/docs/reference/#api-Athletes-getStats
