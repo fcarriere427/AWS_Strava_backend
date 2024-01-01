@@ -12,42 +12,41 @@ import tokens from "./tokens.json" assert { type: "json" };
 const tableName = "StravaDB";
 
 /////////////////////////
-// FONCTIONS EXPOSEES  //
+// FONCTIONS EXPORTEES //
 /////////////////////////
 
-// Récupération de la dernière activité Strava
-// voir le détail ici : https://developers.strava.com/docs/reference/#api-models-SummaryActivity
-export default async function getLastActivity() {
-    console.log('*** getLastActivity in stravaLib.js');
-    var accessToken = await getAccessToken()
-    var options = `https://www.strava.com/api/v3/athlete/activities?page=` + 1 + `&per_page=`+ 1 + `&access_token=${accessToken}`;
-    var res = await httpsRequest(options);
-    // console.log('res = ' + JSON.stringify(res));
-    return(res[0]);
-}
-
-// Récupération de toutes les activités Strava
+/////////////////////////
+// Récupération et intégration à la DB des activités Strava
+// Param "nbMax" : si 0, alors on récupère  toutes les activités Strava
 // voir le détail ici : https://developers.strava.com/docs/reference/#api-Activities-getLoggedInAthleteActivities
-export async function getAllActivities(id_athlete) {
-  console.log('*** getAllActivities in stravaLib.js');
-  // Initialisation des variables
+export async function getActivities(id_athlete, nbMax) {
+  console.log('*** getActivities in stravaLib.js');
+  // Initialisation des variables selon l'usage
+  const nbStravaActivities = 0;
+  const nbPages = 0;
+  if (nbMax == 0) {// pour avoir toutes les activités
+    // Calcul du nb de pages Strava qu'il faut requêter
+    const stats = await getStats(id_athlete);
+    nbStravaActivities = stats.all_ride_totals.count + stats.all_run_totals.count + stats.all_swim_totals.count;
+    nbPages = Math.floor(nbStravaActivities/100) + 1; // il ne faut pas dépasser 1 page de plus, sinon Strava plante
+  } else { // sinon on se limite au nb fixé
+    nbStravaActivities = nbMax;
+    nbPages = Math.floor(nbMax/100) + 1;    
+  }
+  // Initialisation des variables communes
   var nbActivities = 0;
   const nbActivitiesPerPage = 100;
-  // Calcul du nb de pages Strava qu'il faut requêter
-  const stats = await getStats(id_athlete);
-  const nbStravaActivities = stats.all_ride_totals.count + stats.all_run_totals.count + stats.all_swim_totals.count;
-  const nbPages = Math.floor(nbStravaActivities/100) + 1; // il ne faut pas dépasser 1 page de plus, sinon Strava plante
   console.log("nbPages = " + nbPages);
   // Récupération du token d'accès 
   var accessToken = await getAccessToken();
-  
   console.log('Récupération des activités Strava...');
   // Boucle sur les pages
   for(let i = 0; i < nbPages; i++){
     var page = i+1;
-    //console.log('Récupération des activités Strava, pour la page ' + page + ' sur ' + nbPages + '...');
+    console.log('Page ' + page + ' sur ' + nbPages);
     var options = `https://www.strava.com/api/v3/athlete/activities?page=` + page + `&per_page=`+ nbActivitiesPerPage + `&access_token=${accessToken}`;
     var activities = await httpsRequest(options);
+    // ajout des activités de la page dans la DB
     var count = addPage(activities);
     nbActivities = nbActivities + count;
   }
@@ -55,9 +54,25 @@ export async function getAllActivities(id_athlete) {
   return(nbActivities);
 }
 
+/////////////////////////
+// Récupération des stats Strava, nptamment utilisée pour avoir le nb total d'activités
+// voir le détail ici : https://developers.strava.com/docs/reference/#api-Athletes-getStats
+export async function getStats(id_athlete) {
+  console.log('*** getStats in stravaLib.js');
+  console.log('Appel de getAccessToken');
+  var accessToken = await getAccessToken()
+  var options = `https://www.strava.com/api/v3/athletes/${id_athlete}/stats?access_token=${accessToken}`;
+  var res = await httpsRequest(options);
+  return(res);
+}
 
+////////////////////////////////////
+// FONCTIONS INTERNES à ce module //
+////////////////////////////////////
+
+/////////////////////////
 // Ajout de toutes les activités d'une "liste" (Strava Summary) à la DB
-export function addPage(activities) {
+function addPage(activities) {
   // Nb d'activités dans la liste passée en paramètre
   const nbActivities = activities.length;
   // Boucle sur les activités
@@ -69,22 +84,7 @@ export function addPage(activities) {
   return(nbActivities);
 }
 
-// Récupération des stats Strava
-// voir le détail ici : https://developers.strava.com/docs/reference/#api-Athletes-getStats
-export async function getStats(id_athlete) {
-  console.log('*** getStats in stravaLib.js');
-  console.log('Appel de getAccessToken');
-  var accessToken = await getAccessToken()
-  var options = `https://www.strava.com/api/v3/athletes/${id_athlete}/stats?access_token=${accessToken}`;
-  var res = await httpsRequest(options);
-  return(res);
-}
-
-
-////////////////////////////////////
-// FONCTIONS INTERNES à ce module //
-////////////////////////////////////
-
+/////////////////////////
 // Obtention d'un accessToken
 async function getAccessToken() {
     // Récupération des clés et tokens Strava
