@@ -1,13 +1,15 @@
 // Library perso avec fonctions "lecture http" et "save to file"
-// const utils = require('./utils');
 import httpsRequest, { saveData } from "./utils.js";
+
 // Fichiers locaux qui contiennent les ID et tokens Strava
 import stravaKeys from "./strava.json" assert { type: "json" };
 import tokens from "./tokens.json" assert { type: "json" };
 // const strava = require('./strava.json');
 // const tokens = require('./tokens.json');
 
-const id_athlete = 10830547;
+/////////////////////////
+// FONCTIONS EXPOSEES  //
+/////////////////////////
 
 // Récupération de la dernière activité 
 // voir le détail ici : https://developers.strava.com/docs/reference/#api-models-SummaryActivity
@@ -24,15 +26,14 @@ export default async function getLastActivity() {
 
 // Récupération des stats Strava
 // voir le détail ici : https://developers.strava.com/docs/reference/#api-Athletes-getStats
-export async function getStravaStats() {
+export async function getStravaStats(id_athlete) {
   // Lance la requête de récupération des activités
   console.log('*** getStravaStats in stravaLib.js');
   var accessToken = await getAccessToken()
   var options = `https://www.strava.com/api/v3/athletes/${id_athlete}/stats?access_token=${accessToken}`;
-  console.log('url = ' + options);
   var res = await httpsRequest(options);
   console.log('res = ' + JSON.stringify(res));
-  return(res[0]);
+  return(res);
 }
 
 
