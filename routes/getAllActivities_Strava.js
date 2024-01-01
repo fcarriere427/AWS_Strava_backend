@@ -16,7 +16,7 @@ export default getAllActivities_Strava_Router
     console.log('*** getAllActivities_Strava.js');
     console.log('Appel de getAllActivities');
     var response = await getAllActivities(id_athlete);
-    //console.log('response = ' + JSON.stringify(response)); // renvoie un JSON avec les metadata en tête
+    console.log('response = ' + JSON.stringify(response)); // renvoie un JSON avec les metadata en tête
     console.log('Réponse envoyée');
     res.send(JSON.parse(response)); //JSON.parse() car getAllActivities renvoie un entier (le nb d'activités récupérées)
   });

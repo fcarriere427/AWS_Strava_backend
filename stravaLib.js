@@ -53,7 +53,7 @@ export async function getAllActivities(id_athlete) {
   //   var count = dbFun.updateDB(res, page);
   //   nbActivities = nbActivities + count;
   // }
-
+  console.log("on renvoie nbActivities = " + nbActivities);
   return(nbActivities);
 }
 
