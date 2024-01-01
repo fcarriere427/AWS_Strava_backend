@@ -33,6 +33,7 @@ export default async function addItemDB(activity, tableName) {
 ///////////////////////////////////////////////
 export async function getItemDB(numID, tableName) {
   console.log('*** getItemDB in dbLib.js');
+  numID = Number(numID);
   console.log('numID = ' + numID);
   console.log('type of numID = ' + typeof(numID));
   // Spécifier la région
