@@ -21,7 +21,6 @@ export default getStravaStatsRouter
   .get("/", async (req, res) => {
     console.log('*** getAllStravaActivities.js');
     var response = await getStravaStats(id_athlete);
-    console.log('response = ' + JSON.stringify(response));
     console.log('Réponse envoyée');
     res.send(response);
   });
