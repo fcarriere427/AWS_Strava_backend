@@ -39,7 +39,7 @@ export async function getAllActivities() {
 // voir le détail ici : https://developers.strava.com/docs/reference/#api-Athletes-getStats
 export async function getStats(id_athlete) {
   console.log('*** getStats in stravaLib.js');
-  console.log('Appel de getAccessToken in stravaLib.js');
+  console.log('Appel de getAccessToken');
   var accessToken = await getAccessToken()
   var options = `https://www.strava.com/api/v3/athletes/${id_athlete}/stats?access_token=${accessToken}`;
   console.log('Appel de l\'API Strava');
@@ -105,7 +105,7 @@ async function getAccessToken() {
         });
        })
        console.log('Tokens récupérés de Strava');
-       console.log('Appel de saveData in utils.js');
+       console.log('Appel de saveData');
        await saveData(local_keys, './tokens.json');
     } 
     else // ... mais si les tokens ne sont pas expirés, on ne fait rien

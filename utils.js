@@ -5,7 +5,8 @@ import https from 'https';
 import fs from 'fs';
 
 export default async function httpsRequest(params, postData) {
-    //console.log("Requête http... avec : " + params);
+  console.log("*** httpsRequest in utils.js");
+  //console.log("Requête http... avec : " + params);
     return new Promise(function(resolve, reject) {
       var req = https.request(params, function(res) {
           // cumulate data

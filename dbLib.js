@@ -62,8 +62,8 @@ export async function getItem(numID, tableName) {
 // Créer la table
 // NB : l'efface si une table du même nom existe déjà
 ///////////////////////////////////////////////
-export async function createDB(tableName) {
-  console.log('*** createDB in dbLib.js')
+export async function createTable(tableName) {
+  console.log('*** createTable in dbLib.js')
   // Spécifier la région
   const config = {region: 'eu-west-3'};
   // Créer un client DynamoDB
@@ -72,7 +72,7 @@ export async function createDB(tableName) {
   const docClient = DynamoDBDocumentClient.from(client);
   
   // Teste si la base de données existe déjà et la supprime si c'est le cas
-  await deleteDB(tableName);
+  await deleteTable(tableName);
   
   // Création de la base de données
   // Définir les paramètres de la requête
@@ -105,8 +105,8 @@ export async function createDB(tableName) {
 //////////////////////////////////////////////
 // Supprime la table
 ///////////////////////////////////////////////
-export async function deleteDB(tableName) {
-  console.log('*** deleteDB in dbLib.js')
+export async function deleteTable(tableName) {
+  console.log('*** deleteTable in dbLib.js')
   // Spécifier la région
   const config = {region: 'eu-west-3'};
   // Créer un client DynamoDB

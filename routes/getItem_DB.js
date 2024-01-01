@@ -14,7 +14,7 @@ const getItem_DB_Router = express.Router();
 export default getItem_DB_Router
   .get("/", async (req, res) => {
     console.log('*** getItem_DB.js');
-    console.log('Appel de getItem in dbLib.js');
+    console.log('Appel de getItem');
     var response = await getItem(req.query.id, tableName)
     //console.log('response = ' + JSON.stringify(response)); // renvoie un JSON avec les metadata en tête
     //console.log('response.Item = ' + JSON.stringify(response.Item)); // renvoie le JSON de l'activité
