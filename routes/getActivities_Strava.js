@@ -2,7 +2,7 @@
 import express from "express";
 
 // Importer les librairies perso
-import { getActivities } from "../stravaLib.js";
+import getActivities from "../stravaLib.js";
 
 // Numéro d'athlète dans Strava // to do : le récupérer à partir des credentials 
 const id_athlete = 10830547;

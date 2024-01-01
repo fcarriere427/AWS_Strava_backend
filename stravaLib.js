@@ -19,7 +19,7 @@ const tableName = "StravaDB";
 // Récupération et intégration à la DB des activités Strava
 // Param "nbMax" : si 0, alors on récupère  toutes les activités Strava
 // voir le détail ici : https://developers.strava.com/docs/reference/#api-Activities-getLoggedInAthleteActivities
-export async function getActivities(id_athlete, nbMax) {
+export default async function getActivities(id_athlete, nbMax) {
   console.log('*** getActivities in stravaLib.js');
   // Initialisation des variables selon l'usage
   const nbStravaActivities = 0;
