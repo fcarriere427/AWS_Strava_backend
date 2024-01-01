@@ -51,7 +51,7 @@ export default async function getActivities(id_athlete, nbMax) {
     var options = `https://www.strava.com/api/v3/athlete/activities?page=` + page + `&per_page=`+ nbActivitiesPerPage + `&access_token=${accessToken}`;
     var activities = await httpsRequest(options);
     // ajout des activités de la page dans la DB
-    count = await addPage(activities);
+    count = addPage(activities);
     nbActivities = nbActivities + count;
   }
   console.log("Nombre d'activities ajoutées = " + nbActivities);
@@ -76,7 +76,7 @@ export async function getStats(id_athlete) {
 
 /////////////////////////
 // Ajout de toutes les activités d'une "liste" (Strava Summary) à la DB
-async function addPage(activities) {
+function addPage(activities) {
   // Nb d'activités dans la liste passée en paramètre
   const nbActivities = activities.length;
   // Boucle sur les activités
