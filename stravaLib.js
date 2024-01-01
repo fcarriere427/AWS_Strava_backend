@@ -85,7 +85,7 @@ function addPage(activities) {
     const activity = activities[i];
     addItem(activity, tableName);
     // ajouté car si on n'attend pas, on provoque une erreur "credential" : trop rapide pour dynamoDB ??
-    setTimeout(100);
+    setTimeout(200);
   }
   return(nbActivities);
 }
