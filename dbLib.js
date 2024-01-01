@@ -5,8 +5,8 @@ import { PutCommand, GetCommand, DeleteCommand, DynamoDBDocumentClient } from "@
 ///////////////////////////////////////////////
 // Ajouter un élément à la table
 ///////////////////////////////////////////////
-export default async function addItemDB(activity, tableName) {
-  console.log('*** addItemDB in dbLib.js');
+export default async function addItem(activity, tableName) {
+  console.log('*** addItem in dbLib.js');
   // Spécifier la région
   const config = {region: 'eu-west-3'};
   // Créer un client DynamoDB
@@ -32,8 +32,8 @@ export default async function addItemDB(activity, tableName) {
 ///////////////////////////////////////////////
 // renvoie l'élément avec la clé ID
 ///////////////////////////////////////////////
-export async function getItemDB(numID, tableName) {
-  console.log('*** getItemDB in dbLib.js');
+export async function getItem(numID, tableName) {
+  console.log('*** getItem in dbLib.js');
   numID = Number(numID);
   // Spécifier la région
   const config = {region: 'eu-west-3'};

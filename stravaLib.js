@@ -11,23 +11,32 @@ import tokens from "./tokens.json" assert { type: "json" };
 // FONCTIONS EXPOSEES  //
 /////////////////////////
 
-// Récupération de la dernière activité 
+// Récupération de la dernière activité Strava
 // voir le détail ici : https://developers.strava.com/docs/reference/#api-models-SummaryActivity
 export default async function getLastActivity() {
-    // Lance la requête de récupération des activités
     console.log('*** getLastActivity in stravaLib.js');
     var accessToken = await getAccessToken()
     var options = `https://www.strava.com/api/v3/athlete/activities?page=` + 1 + `&per_page=`+ 1 + `&access_token=${accessToken}`;
     var res = await httpsRequest(options);
-    //console.log('res = ' + res);
     // console.log('res = ' + JSON.stringify(res));
     return(res[0]);
 }
 
+// Récupération de toutes les activités Strava
+// voir le détail ici : https://developers.strava.com/docs/reference/#api-Activities-getLoggedInAthleteActivities
+export async function getAllActivities() {
+  console.log('*** getAllActivities in stravaLib.js');
+  var accessToken = await getAccessToken()
+  var options = `https://www.strava.com/api/v3/athlete/activities?page=` + 1 + `&per_page=`+ 10 + `&access_token=${accessToken}`;
+  var res = await httpsRequest(options);
+  return(res[0]);
+}
+
+
 // Récupération des stats Strava
 // voir le détail ici : https://developers.strava.com/docs/reference/#api-Athletes-getStats
-export async function getStravaStats(id_athlete) {
-  console.log('*** getStravaStats in stravaLib.js');
+export async function getStats(id_athlete) {
+  console.log('*** getStats in stravaLib.js');
   var accessToken = await getAccessToken()
   var options = `https://www.strava.com/api/v3/athletes/${id_athlete}/stats?access_token=${accessToken}`;
   var res = await httpsRequest(options);
