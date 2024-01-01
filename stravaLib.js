@@ -1,6 +1,6 @@
 // Imports des librairies perso
 import httpsRequest, { saveData } from "./utils.js";
-import { addItem } from "./dbLib.js";
+import addItem from "./dbLib.js";
 
 // Fichiers locaux qui contiennent les ID et tokens Strava
 import stravaKeys from "./strava.json" assert { type: "json" };
