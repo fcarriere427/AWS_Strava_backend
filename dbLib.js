@@ -32,7 +32,8 @@ export default async function addItemDB(activity, tableName) {
 // renvoie l'élément avec la clé ID (!! différent de l'ID Strava)
 ///////////////////////////////////////////////
 export async function getItemDB(numID, tableName) {
-    console.log('*** getItemDB in dbLib.js')
+  console.log('*** getItemDB in dbLib.js');
+  console.log('numID = ' + numID);
   // Spécifier la région
   const config = {region: 'eu-west-3'};
   // Créer un client DynamoDB
