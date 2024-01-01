@@ -20,6 +20,7 @@ export default getAllActivities_Strava_Router
     response = JSON.parse(response);
     console.log('response after JSON.parse() = ' + response);
     console.log('response stringified after JSON.parse() = ' + JSON.stringify(response));
+    console.log('type of response = ' + typeof(response));
     console.log('Réponse envoyée');
     res.send(response);
   });
