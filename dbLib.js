@@ -1,5 +1,5 @@
 // Importer les modules nécessaires à l'accès à DynamoDB
-import { CreateTableCommand, DeleteTableCommand, waitUntilTableExists, waitUntilTableNotExists, ListTablesCommand, BillingMode, DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { CreateTableCommand, DeleteTableCommand, waitUntilTableExists, waitUntilTableNotExists, ListTablesCommand, BatchWriteItemCommand, BillingMode, DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { PutCommand, GetCommand, DeleteCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 
 ///////////////////////////////////////////////
@@ -25,6 +25,45 @@ export default async function addItem(activity, tableName) {
     },
   }
   const command = new PutCommand(params);
+  const response = await docClient.send(command);
+  return response;
+}
+
+///////////////////////////////////////////////
+// Ajouter un lot d'éléments à la table
+// input batch : tableau contenant les activités (id, activity)
+///////////////////////////////////////////////
+export async function addBatchItem(input_batch, tableName) {
+  //console.log('*** addBatchItem in dbLib.js');
+  // Spécifier la région
+  const config = {region: 'eu-west-3'};
+  // Créer un client DynamoDB
+  const client = new DynamoDBClient(config);
+  // Créer un client document DynamoDB
+  const docClient = DynamoDBDocumentClient.from(client);
+  // Définir les paramètres de la requête
+  var batch = [];
+  const nbActivities = input_batch.length;
+  for(let i = 0; i < nbActivities; i++){
+    //console.log(`activities[${i}] = ` + activities[i]);
+    const activity = input_batch[i];
+    const numID = Number(activity.id);
+    const element = 
+      {
+        "PutRequest": {
+          "Item": {
+            activity
+          }
+        }
+      }
+    batch.push(element);
+  }
+  const input = {
+    "RequestItems": {
+      tableName: batch
+    }
+  }
+  const command = new BatchWriteItemCommand(input);
   const response = await docClient.send(command);
   return response;
 }

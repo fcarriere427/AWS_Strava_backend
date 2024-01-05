@@ -1,6 +1,6 @@
 // Imports des librairies perso
 import httpsRequest, { saveData } from "./utils.js";
-import addItem from "./dbLib.js";
+import addBatchItem from "./dbLib.js";
 
 // Fichiers locaux qui contiennent les ID et tokens Strava
 import stravaKeys from "./strava.json" assert { type: "json" };
@@ -21,10 +21,12 @@ const tableName = "StravaDB";
 // voir le détail ici : https://developers.strava.com/docs/reference/#api-Activities-getLoggedInAthleteActivities
 export default async function getActivities(id_athlete, nbMax) {
   console.log('*** getActivities in stravaLib.js');
-  // Initialisation des variables selon l'usage
+  // Initialisation des variables
   var nbStravaActivities = 0;
   var nbPages = 0;
   var nbActivitiesPerPage = 100;
+  var nbActivities = 0;
+  // Adaptation des variables selon l'usage
   if (nbMax == 0) {// pour avoir toutes les activités
     // Calcul du nb de pages Strava qu'il faut requêter
     const stats = await getStats(id_athlete);
@@ -36,8 +38,7 @@ export default async function getActivities(id_athlete, nbMax) {
     nbPages = Math.floor(nbMax/100) + 1;    
   }
   // Initialisation des variables communes
-  var nbActivities = 0;
-  console.log("nbPages = " + nbPages);
+  //console.log("nbPages = " + nbPages);
   // Récupération du token d'accès 
   var accessToken = await getAccessToken();
   console.log('Récupération des activités Strava...');
@@ -48,7 +49,8 @@ export default async function getActivities(id_athlete, nbMax) {
     var options = `https://www.strava.com/api/v3/athlete/activities?page=` + page + `&per_page=`+ nbActivitiesPerPage + `&access_token=${accessToken}`;
     var activities = await httpsRequest(options);
     // ajout des activités de la page dans la DB
-    var count = await addPage(activities);
+    var res = await addBatchItem(activities, tableName);
+    var count = activities.length;
     nbActivities = nbActivities + count;
   }
   console.log("Nombre d'activities ajoutées = " + nbActivities);
@@ -71,19 +73,19 @@ export async function getStats(id_athlete) {
 // FONCTIONS INTERNES à ce module //
 ////////////////////////////////////
 
-/////////////////////////
-// Ajout de toutes les activités d'une "liste" (Strava Summary) à la DB
-async function addPage(activities) {
-  // Nb d'activités dans la liste passée en paramètre
-  const nbActivities = activities.length;
-  // Boucle sur les activités
-  for(let i = 0; i < nbActivities; i++){
-    //console.log(`activities[${i}] = ` + activities[i]);
-    const activity = activities[i];
-    addItem(activity, tableName);
-  }
-  return(nbActivities);
-}
+// /////////////////////////
+// // Ajout de toutes les activités d'une "liste" (Strava Summary) à la DB
+// async function addPage(activities) {
+//   // Nb d'activités dans la liste passée en paramètre
+//   const nbActivities = activities.length;
+//   // Boucle sur les activités
+//   for(let i = 0; i < nbActivities; i++){
+//     //console.log(`activities[${i}] = ` + activities[i]);
+//     const activity = activities[i];
+//     addItem(activity, tableName);
+//   }
+//   return(nbActivities);
+// }
 
 /////////////////////////
 // Obtention d'un accessToken
