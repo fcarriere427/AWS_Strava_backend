@@ -57,7 +57,7 @@ export async function addBatchItem(input_batch, tableName) {
         }
       }
     batch.push(element);
-    console.log('element = ' + element);
+    console.log(`element{${numID}} =` + element);
   }
   console.log('batch = ' + batch);
   const input = {
