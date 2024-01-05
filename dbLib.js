@@ -34,7 +34,7 @@ export default async function addItem(activity, tableName) {
 // input batch : tableau contenant les activités (id, activity)
 ///////////////////////////////////////////////
 export async function addBatchItem(input_batch, tableName) {
-  //console.log('*** addBatchItem in dbLib.js');
+  console.log('*** addBatchItem in dbLib.js');
   // Spécifier la région
   const config = {region: 'eu-west-3'};
   // Créer un client DynamoDB
@@ -57,7 +57,9 @@ export async function addBatchItem(input_batch, tableName) {
         }
       }
     batch.push(element);
+    console.log('element = ' + element);
   }
+  console.log('batch = ' + batch);
   const input = {
     "RequestItems": {
       tableName: batch
