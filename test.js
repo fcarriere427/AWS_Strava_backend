@@ -28,8 +28,15 @@ export const main = async () => {
         {
           PutRequest: {
             Item: {
-              ID: { N : "2" },
-              Contenu: {M : '{"Name": {"S": "Joe"}, "Age": {"N": "35"}}' },
+                id: { N: "1" }, // Un attribut de type nombre
+                nom: { S: "Alice" }, // Un attribut de type chaîne
+                adresse: { // Un attribut de type map
+                  M: {
+                    rue: { S: "1 rue du Paradis" },
+                    ville: { S: "Orléans" },
+                    codePostal: { S: "45000" }
+                  }
+                }
             },
           },
         },
