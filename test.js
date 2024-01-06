@@ -30,8 +30,8 @@ export const main = async () => {
         {
           PutRequest: {
             Item: {
-              ID: { N: "2" },
-              Contenu: { M: `${chaine}`},
+              ID: { N : "2" },
+              Contenu: {S : `${chaine}`},
               },
           },
         },
