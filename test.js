@@ -1,6 +1,8 @@
 // Importer les modules nécessaires à l'accès à DynamoDB
 import { BatchWriteItemCommand, DynamoDBClient } from "@aws-sdk/client-dynamodb";
 
+import { fileURLToPath } from "url";
+
 const config = {region: 'eu-west-3'};
 const client = new DynamoDBClient(config);
 
