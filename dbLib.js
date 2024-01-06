@@ -22,6 +22,8 @@ export async function addBatchItem(input_batch, tableName) {
   console.log("type of input_batch = " + typeof(input_batch));
   console.log("JSON.stringify(input_batch) = " + JSON.stringify(input_batch));
   console.log("type of JSON.stringify(input_batch) = " + typeof(JSON.stringify(input_batch)));
+  console.log("JSON.stringify(input_batch[0]) = " + JSON.stringify(input_batch[0]));
+  console.log("type of JSON.stringify(input_batch[0]) = " + typeof(JSON.stringify(input_batch[0])));
   console.log("JSON.parse(input_batch) = " + JSON.parse(input_batch));
   console.log("type of JSON.parse(input_batch) = " + typeof(JSON.parse(input_batch)));
   
