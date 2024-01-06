@@ -43,7 +43,7 @@ export async function addBatchItem(input_batch, tableName) {
   const docClient = DynamoDBDocumentClient.from(client);
   // Définir les paramètres de la requête
   var batch = [];
-  console.log(`input_batch = ${JSON.stringify(input.batch)}`);
+  console.log(`input_batch = ${JSON.stringify(input_batch)}`);
   const nbActivities = input_batch.length;
   console.log(`nbActivities = ${nbActivities}`);
   for(let i = 0; i < nbActivities; i++){
