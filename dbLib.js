@@ -3,33 +3,6 @@ import { BatchWriteItemCommand, CreateTableCommand, DeleteTableCommand, waitUnti
 import { PutCommand, GetCommand, DeleteCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 
 ///////////////////////////////////////////////
-// Ajouter un élément à la table
-///////////////////////////////////////////////
-export default async function addItem(activity, tableName) {
-  //console.log('*** addItem in dbLib.js');
-  // Spécifier la région
-  const config = {region: 'eu-west-3'};
-  // Créer un client DynamoDB
-  const client = new DynamoDBClient(config);
-  // Créer un client document DynamoDB
-  const docClient = DynamoDBDocumentClient.from(client);
-  // Définir les paramètres de la requête
-  //var numID = Math.floor(Math.random()*100);
-  var numID = Number(activity.id);
-  //console.log('ID for this new Activity = ' + numID);
-  const params = {
-    TableName: tableName,
-    Item: {
-      ID: numID,
-      Activity: activity
-    },
-  }
-  const command = new PutCommand(params);
-  const response = await docClient.send(command);
-  return response;
-}
-
-///////////////////////////////////////////////
 // Ajouter un lot d'éléments à la table
 // input batch : tableau contenant les activités (id, activity)
 ///////////////////////////////////////////////
@@ -46,30 +19,46 @@ export async function addBatchItem(input_batch, tableName) {
   //console.log(`input_batch = ${JSON.stringify(input_batch)}`);
   const nbActivities = input_batch.length;
   console.log(`nbActivities = ${nbActivities}`);
-  for(let i = 0; i < nbActivities; i++){
-    const activity = input_batch[i];
-    //const numID = Number(activity.id);
-    const numID = 1;
-    //console.log(`activity numID[${numID}] = ` + JSON.stringify(activity));
-    const element = {
-      "PutRequest": {
-        "Item": {
-          "ID": {"N": `${numID}`},
-          //"Activity": {"M": activity}
-          //"Contenu": {"M": `${JSON.parse(activity)}`}
-          "Contenu": {"M": `${activity}`}
-        }
-      }
-    }
-    batch.push(element);
-    //console.log(`element{${numID}} =` + JSON.stringify(element));
-  }
-  const input = {
-    "RequestItems": {
-      "Test": batch
-    }
-  }
-  const command = new BatchWriteItemCommand(input);
+
+  for (const chunk of input_batch) {
+  const putRequests = chunk.map((activity) => ({
+    PutRequest: {
+      Item: activity,
+    },
+  }));
+
+  // for(let i = 0; i < nbActivities; i++){
+  //   const activity = input_batch[i];
+  //   //const numID = Number(activity.id);
+  //   const numID = 1;
+  //   //console.log(`activity numID[${numID}] = ` + JSON.stringify(activity));
+  //   const element = {
+  //     "PutRequest": {
+  //       "Item": {
+  //         "ID": {"N": `${numID}`},
+  //         //"Activity": {"M": activity}
+  //         //"Contenu": {"M": `${JSON.parse(activity)}`}
+  //         "Contenu": {"M": `${activity}`}
+  //       }
+  //     }
+  //   }
+  //   batch.push(element);
+  //   //console.log(`element{${numID}} =` + JSON.stringify(element));
+  // }
+  
+  const command = new BatchWriteCommand({
+    RequestItems: {
+      ["Test"]: putRequests,
+    },
+  });
+  
+  // const input = {
+  //   "RequestItems": {
+  //     "Test": batch
+  //   }
+  // }
+  
+  //const command = new BatchWriteItemCommand(input);
 
   console.log('command = ' + JSON.stringify(command));
   
@@ -111,6 +100,33 @@ export async function getItem(numID, tableName) {
 // Fonctions moins utiles
 ///////////////////////////////////////////////
 ///////////////////////////////////////////////
+
+///////////////////////////////////////////////
+// Ajouter un élément à la table
+///////////////////////////////////////////////
+export default async function addItem(activity, tableName) {
+  //console.log('*** addItem in dbLib.js');
+  // Spécifier la région
+  const config = {region: 'eu-west-3'};
+  // Créer un client DynamoDB
+  const client = new DynamoDBClient(config);
+  // Créer un client document DynamoDB
+  const docClient = DynamoDBDocumentClient.from(client);
+  // Définir les paramètres de la requête
+  //var numID = Math.floor(Math.random()*100);
+  var numID = Number(activity.id);
+  //console.log('ID for this new Activity = ' + numID);
+  const params = {
+    TableName: tableName,
+    Item: {
+      ID: numID,
+      Activity: activity
+    },
+  }
+  const command = new PutCommand(params);
+  const response = await docClient.send(command);
+  return response;
+}
 
 ///////////////////////////////////////////////
 // Créer la table
