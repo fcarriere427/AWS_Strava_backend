@@ -35,7 +35,13 @@ export const main = async () => {
     },
   });
 
-  const response = await client.send(command);
+  const response = await client.send(command, params, function(err, data) {
+    if (err) {
+      console.log("Error", err);
+    } else {
+      console.log("Table Created", data);
+    }
+  });
   console.log(response);
   return response;
 };
