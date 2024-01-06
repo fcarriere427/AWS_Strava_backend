@@ -26,11 +26,11 @@ export async function addBatchItem(input_batch, tableName) {
   console.log("test = " + test);
   console.log("type of test = " + Object.prototype.toString.call(test));
   
-  const map = Array.prototype.map;
-  const new_input = map.call(test);
-  console.log("type of new_input = " + Object.prototype.toString.call(new_input));
+  // const map = Array.prototype.map;
+  // const new_input = map.call(test);
+  // console.log("type of new_input = " + Object.prototype.toString.call(new_input));
 
-  const putRequests = new_input.map((activity) => ({
+  const putRequests = test.map((activity) => ({
     PutRequest: {
       Item: activity,
     },
