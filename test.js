@@ -20,7 +20,7 @@ export const main = async () => {
             // For more information about data types,
             // see https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.html#HowItWorks.DataTypes
             Item: {
-              ID: { N: 1 },
+              ID: { N: "1" },
               Contenu: { S: "Toto 1" },
             },
           },
@@ -28,7 +28,7 @@ export const main = async () => {
         {
           PutRequest: {
             Item: {
-              ID: { N: 2 },
+              ID: { N: "2" },
               Contenu: { S: "Toto 2" },
               },
           },
