@@ -55,7 +55,7 @@ export async function addBatchItem(input_batch, tableName) {
   //   //console.log(`element{${numID}} =` + JSON.stringify(element));
   // }
   
-  const command = new BatchWriteCommand({
+  const command = new BatchWriteItemCommand({
     RequestItems: {
       ["Test"]: putRequests,
     },
