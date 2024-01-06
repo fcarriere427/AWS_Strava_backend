@@ -45,3 +45,8 @@ export const main = async () => {
   console.log(response);
   return response;
 };
+
+// Invoke main function if this file was run directly.
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+    main();
+  }
