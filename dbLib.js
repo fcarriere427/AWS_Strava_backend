@@ -69,15 +69,15 @@ export async function addBatchItem(input_batch, tableName) {
       tableName: batch
     }
   }
-  const command = new BatchWriteItemCommand(input,function(err, data) {
+  const command = new BatchWriteItemCommand(input);
+
+  const response = await docClient.send(command,function(err, data) {
     if (err) {
       console.log("Error", err);
     } else {
       console.log("Success", data);
     }
   });
-
-  const response = await docClient.send(command);
   return response;
 }
 
