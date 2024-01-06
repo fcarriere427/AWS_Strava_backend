@@ -27,7 +27,7 @@ export async function addBatchItem(input_batch, tableName) {
         "ID": {"N": `${Number(activity.id)}`},
         //"Activity": {"M": activity}
         //"Contenu": {"M": `${JSON.parse(activity)}`}
-        "Contenu": {"M": `${activity}`}
+        "Contenu": {"M": `${JSON.stringify(activity)}`}
       }
     },
   }));
