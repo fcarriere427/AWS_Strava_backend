@@ -21,11 +21,12 @@ export async function addBatchItem(input_batch, tableName) {
   console.log(`nbActivities = ${nbActivities}`);
 
   for (const chunk of input_batch) {
-  const putRequests = chunk.map((activity) => ({
-    PutRequest: {
-      Item: activity,
-    },
-  }));
+    const putRequests = chunk.map((activity) => ({
+      PutRequest: {
+        Item: activity,
+      },
+    }));
+  }
 
   // for(let i = 0; i < nbActivities; i++){
   //   const activity = input_batch[i];
