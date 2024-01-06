@@ -21,19 +21,14 @@ export async function addBatchItem(input_batch, tableName) {
   console.log(`nbActivities = ${nbActivities}`);
   //console.log("JSON.stringify(input_batch) = " + JSON.stringify(input_batch));
   console.log("type of input_batch = " + Object.prototype.toString.call(input_batch));
-    //console.log("type of JSON.stringify(input_batch) = " + typeof(JSON.stringify(input_batch)));
-  //let chaineJSON = JSON.stringify(input_batch).replace(/(\w+)/g, "\"$1\""); // "[\"a\",\"b\",\"c\",\"d\"]"
-  // var test = JSON.parse(JSON.stringify(input_batch));
-  // console.log("test = " + test);
-  // console.log("type of test = " + Object.prototype.toString.call(test));
-  
-  // const map = Array.prototype.map;
-  // const new_input = map.call(test);
-  // console.log("type of new_input = " + Object.prototype.toString.call(new_input));
-
   const putRequests = input_batch.map((activity) => ({
     PutRequest: {
-      Item: activity,
+      Item: {
+        "ID": {"N": `${Number(activity.id)}`},
+        //"Activity": {"M": activity}
+        //"Contenu": {"M": `${JSON.parse(activity)}`}
+        "Contenu": {"M": `${activity}`}
+      }
     },
   }));
 
@@ -62,14 +57,6 @@ export async function addBatchItem(input_batch, tableName) {
     },
   });
   
-  // const input = {
-  //   "RequestItems": {
-  //     "Test": batch
-  //   }
-  // }
-  
-  //const command = new BatchWriteItemCommand(input);
-
   console.log('command = ' + JSON.stringify(command));
   
   const response = await docClient.send(command,function(err, data) {
