@@ -59,7 +59,7 @@ export async function addBatchItem(input_batch, tableName) {
       }
     }
     batch.push(element);
-    console.log(`element{${numID}} =` + JSON.stringify(element));
+    //console.log(`element{${numID}} =` + JSON.stringify(element));
   }
   console.log('batch = ' + JSON.stringify(batch));
   const input = {
@@ -67,7 +67,14 @@ export async function addBatchItem(input_batch, tableName) {
       tableName: batch
     }
   }
-  const command = new BatchWriteItemCommand(input);
+  const command = new BatchWriteItemCommand(input,function(err, data) {
+    if (err) {
+      console.log("Error", err);
+    } else {
+      console.log("Success", data);
+    }
+  });
+
   const response = await docClient.send(command);
   return response;
 }
