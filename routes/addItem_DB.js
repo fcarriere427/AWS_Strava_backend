@@ -15,8 +15,6 @@ const addItem_DB_Router = express.Router();
 export default addItem_DB_Router
   .get("/", async (req, res) => {
     console.log('*** addItem_DB.js');
-    // console.log('Appel de createTable');
-    // var db = await createTable(tableName);
     console.log('Appel de getLastactivity');
     var activity = await getLastActivity();
     console.log('Appel de addItem');

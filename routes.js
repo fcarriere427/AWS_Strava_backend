@@ -11,8 +11,9 @@ function routes(app) {
   // routes to Strava API
   app.use("/strava/getStats", getStats_Strava_Router);
   app.use("/strava/getActivities", getActivities_Strava_Router);
+  
   // routes to AWS DB
-  app.use("/db/reset", reset_DB_Router);
+  app.use("/db/reset", reset_DB_Router); // supprime et recrée la table StravaDB (vide)
   app.use("/db/addItem", addItem_DB_Router);
   app.use("/db/getItem", getItem_DB_Router);
 };

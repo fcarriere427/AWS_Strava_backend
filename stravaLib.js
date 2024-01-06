@@ -25,6 +25,9 @@ export default async function getActivities(id_athlete, nbMax) {
   var nbStravaActivities = 0;
   var nbPages = 0;
   var nbActivitiesPerPage = 100;
+  /////// TMP //////////
+  nbActivitiesPerPage = 3;
+  /////// TMP //////////
   var nbActivities = 0;
   // Adaptation des variables selon l'usage
   if (nbMax == 0) {// pour avoir toutes les activités
@@ -39,6 +42,9 @@ export default async function getActivities(id_athlete, nbMax) {
   }
   // Initialisation des variables communes
   //console.log("nbPages = " + nbPages);
+  /////// TMP //////////
+  nbPages = 1;
+  /////// TMP //////////
   // Récupération du token d'accès 
   var accessToken = await getAccessToken();
   console.log('Récupération des activités Strava...');
