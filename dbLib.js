@@ -53,8 +53,8 @@ export async function addBatchItem(input_batch, tableName) {
     const element = {
       "PutRequest": {
         "Item": {
-          ID: {"N": numID},
-          Activity: {"M": activity}
+          "ID": {"N": numID},
+          "Activity": {"M": activity}
         }
       }
     }
