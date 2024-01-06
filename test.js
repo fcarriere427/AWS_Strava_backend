@@ -28,7 +28,7 @@ export const main = async () => {
         {
           PutRequest: {
             Item: {
-                ID: { N: "1" }, // Un attribut de type nombre
+                ID: { N: "2" }, // Un attribut de type nombre
                 nom: { S: "Alice" }, // Un attribut de type chaîne
                 adresse: { // Un attribut de type map
                   M: {
