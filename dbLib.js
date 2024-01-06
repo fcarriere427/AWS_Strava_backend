@@ -44,8 +44,9 @@ export async function addBatchItem(input_batch, tableName) {
   // Définir les paramètres de la requête
   var batch = [];
   const nbActivities = input_batch.length;
+  console.log(`nbActivities = ${nbActivities}`);
   for(let i = 0; i < nbActivities; i++){
-    //console.log(`activities[${i}] = ` + activities[i]);
+    console.log(`activities[${i}] = ` + activities[i]);
     const activity = input_batch[i];
     const numID = Number(activity.id);
     const element = 
