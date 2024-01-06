@@ -9,7 +9,7 @@ export const main = async () => {
     RequestItems: {
       // Each key in this object is the name of a table. This example refers
       // to a Coffees table.
-      Coffees: [
+      Test: [
         // Each entry in Coffees is an object that defines either a PutRequest or DeleteRequest.
         {
           // Each PutRequest object defines one item to be inserted into the table.
