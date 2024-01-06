@@ -29,7 +29,7 @@ export const main = async () => {
           PutRequest: {
             Item: {
               ID: { N : "2" },
-              Contenu: {M : `{"prenom": '+'"bob", "nom": '+'"sinclar"}`},
+              Contenu: {M : `{key:value}`},
               },
           },
         },
