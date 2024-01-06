@@ -63,7 +63,6 @@ export async function addBatchItem(input_batch, tableName) {
     batch.push(element);
     //console.log(`element{${numID}} =` + JSON.stringify(element));
   }
-  console.log('batch = ' + JSON.stringify(batch));
   const input = {
     "RequestItems": {
       tableName: batch
@@ -71,6 +70,8 @@ export async function addBatchItem(input_batch, tableName) {
   }
   const command = new BatchWriteItemCommand(input);
 
+  console.log('command = ' + JSON.stringify(command));
+  
   const response = await docClient.send(command,function(err, data) {
     if (err) {
       console.log("Error", err);
