@@ -55,6 +55,7 @@ export default async function getActivities(id_athlete, nbMax) {
     var options = `https://www.strava.com/api/v3/athlete/activities?page=` + page + `&per_page=`+ nbActivitiesPerPage + `&access_token=${accessToken}`;
     var activities = await httpsRequest(options);
     // ajout des activités de la page dans la DB
+    console.log(`activities = ${JSON.stringify(activities)}`);
     var res = await addBatchItem(activities, tableName);
     var count = activities.length;
     nbActivities = nbActivities + count;
