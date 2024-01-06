@@ -49,7 +49,7 @@ export async function addBatchItem(input_batch, tableName) {
   for(let i = 0; i < nbActivities; i++){
     const activity = input_batch[i];
     const numID = Number(activity.id);
-    console.log(`numID[${numID}] = ` + JSON.stringify(activity));
+    //console.log(`numID[${numID}] = ` + JSON.stringify(activity));
     const element = 
       {
         "PutRequest": {
@@ -61,7 +61,7 @@ export async function addBatchItem(input_batch, tableName) {
     batch.push(element);
     console.log(`element{${numID}} =` + JSON.stringify(element));
   }
-  console.log('batch = ' + batch);
+  console.log('batch = ' + JSON.stringify(batch));
   const input = {
     "RequestItems": {
       tableName: batch
