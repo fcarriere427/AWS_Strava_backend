@@ -65,7 +65,7 @@ export async function addBatchItem(input_batch, tableName) {
   }
   const input = {
     "RequestItems": {
-      tableName: batch
+      `${tableName}`: batch
     }
   }
   const command = new BatchWriteItemCommand(input);
