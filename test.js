@@ -31,7 +31,7 @@ export const main = async () => {
           PutRequest: {
             Item: {
               ID: { N : "2" },
-              Contenu: {M : `${chaine}`},
+              Contenu: {M : `${JSON.stringify(chaine)}`},
               },
           },
         },
