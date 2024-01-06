@@ -19,10 +19,12 @@ export async function addBatchItem(input_batch, tableName) {
   //console.log(`input_batch = ${JSON.stringify(input_batch)}`);
   const nbActivities = input_batch.length;
   console.log(`nbActivities = ${nbActivities}`);
-  console.log("JSON.stringify(input_batch) = " + JSON.stringify(input_batch));
-  console.log("type of JSON.stringify(input_batch) = " + typeof(JSON.stringify(input_batch)));
-  console.log("JSON.stringify(input_batch[0]) = " + JSON.stringify(input_batch[0]));
-  console.log("type of JSON.stringify(input_batch[0]) = " + typeof(JSON.stringify(input_batch[0])));
+  //console.log("JSON.stringify(input_batch) = " + JSON.stringify(input_batch));
+  //console.log("type of JSON.stringify(input_batch) = " + typeof(JSON.stringify(input_batch)));
+  console.log("JSON.parse(input_batch) = " + JSON.parse(input_batch));
+  console.log("type of JSON.parse(input_batch) = " + typeof(JSON.parse(input_batch)));
+  // console.log("JSON.stringify(input_batch[0]) = " + JSON.stringify(input_batch[0]));
+  // console.log("type of JSON.stringify(input_batch[0]) = " + typeof(JSON.stringify(input_batch[0])));
   
   const map = Array.prototype.map;
   const new_input = map.call(input_batch);
