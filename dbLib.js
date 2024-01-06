@@ -65,7 +65,7 @@ export async function addBatchItem(input_batch, tableName) {
   }
   const input = {
     "RequestItems": {
-      "stravaDB": batch
+      "Test": batch
     }
   }
   const command = new BatchWriteItemCommand(input);
