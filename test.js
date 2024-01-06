@@ -1,8 +1,8 @@
 // Importer les modules nécessaires à l'accès à DynamoDB
 import { BatchWriteItemCommand, DynamoDBClient } from "@aws-sdk/client-dynamodb";
 
-
-const client = new DynamoDBClient({});
+const config = {region: 'eu-west-3'};
+const client = new DynamoDBClient(config);
 
 export const main = async () => {
   const command = new BatchWriteItemCommand({
