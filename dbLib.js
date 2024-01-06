@@ -21,7 +21,8 @@ export async function addBatchItem(input_batch, tableName) {
   console.log(`nbActivities = ${nbActivities}`);
   console.log("type of input_batch = " + typeof(input_batch));
   console.log("JSON.stringify(input_batch) = " + JSON.stringify(input_batch));
-
+  console.log("type of JSON.stringify(input_batch) = " + typeof(JSON.stringify(input_batch)));
+  
   for (const chunk of input_batch) {
     const putRequests = chunk.map((activity) => ({
       PutRequest: {
