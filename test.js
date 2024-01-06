@@ -37,7 +37,7 @@ export const main = async () => {
     },
   });
 
-  const response = await client.send(command, params, function(err, data) {
+  const response = await client.send(command, function(err, data) {
     if (err) {
       console.log("Error", err);
     } else {
