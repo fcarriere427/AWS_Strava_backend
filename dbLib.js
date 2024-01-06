@@ -1,6 +1,6 @@
 // Importer les modules nécessaires à l'accès à DynamoDB
-import { BatchWriteItemCommand, CreateTableCommand, DeleteTableCommand, waitUntilTableExists, waitUntilTableNotExists, ListTablesCommand, BillingMode, DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { PutCommand, GetCommand, DeleteCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
+import { CreateTableCommand, DeleteTableCommand, waitUntilTableExists, waitUntilTableNotExists, ListTablesCommand, BillingMode, DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { BatchWriteItem, PutCommand, GetCommand, DeleteCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 
 ///////////////////////////////////////////////
 // Ajouter un élément à la table
@@ -67,7 +67,7 @@ export async function addBatchItem(input_batch, tableName) {
       tableName: batch
     }
   }
-  const command = new BatchWriteItemCommand(input,function(err, data) {
+  const command = new BatchWriteItem(input,function(err, data) {
     if (err) {
       console.log("Error", err);
     } else {
