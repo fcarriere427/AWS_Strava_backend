@@ -21,9 +21,9 @@ export async function addBatchItem(input_batch, tableName) {
   console.log(`nbActivities = ${nbActivities}`);
   //console.log("JSON.stringify(input_batch) = " + JSON.stringify(input_batch));
   //console.log("type of JSON.stringify(input_batch) = " + typeof(JSON.stringify(input_batch)));
-  let chaineJSON = JSON.stringify(input_batch).replace(/(\w+)/g, "\"$1\""); // "[\"a\",\"b\",\"c\",\"d\"]"
-  console.log("JSON.parse(chaineJSON) = " + JSON.parse(chaineJSON));
-  console.log("type of JSON.parse(chaineJSON) = " + typeof(JSON.parse(chaineJSON)));
+  //let chaineJSON = JSON.stringify(input_batch).replace(/(\w+)/g, "\"$1\""); // "[\"a\",\"b\",\"c\",\"d\"]"
+  console.log("JSON.parse(JSON.stringify(input_batch)) = " + JSON.parse(JSON.stringify(input_batch));
+  console.log("type of JSON.parse(JSON.stringify(input_batch) = " + typeof(JSON.parse(JSON.stringify(input_batch)));
   // console.log("JSON.stringify(input_batch[0]) = " + JSON.stringify(input_batch[0]));
   // console.log("type of JSON.stringify(input_batch[0]) = " + typeof(JSON.stringify(input_batch[0])));
   
