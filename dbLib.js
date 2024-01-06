@@ -24,13 +24,11 @@ export async function addBatchItem(input_batch, tableName) {
   //let chaineJSON = JSON.stringify(input_batch).replace(/(\w+)/g, "\"$1\""); // "[\"a\",\"b\",\"c\",\"d\"]"
   var test = JSON.parse(JSON.stringify(input_batch));
   console.log("test = " + test);
-  console.log("type of test = " + typeof(test));
-  // console.log("JSON.stringify(input_batch[0]) = " + JSON.stringify(input_batch[0]));
-  // console.log("type of JSON.stringify(input_batch[0]) = " + typeof(JSON.stringify(input_batch[0])));
+  console.log("type of test = " + Object.prototype.toString.call(test));
   
   const map = Array.prototype.map;
   const new_input = map.call(test);
-  console.log("type of new_input = " + typeof(new_input));
+  console.log("type of new_input = " + Object.prototype.toString.call(new_input));
 
   const putRequests = new_input.map((activity) => ({
     PutRequest: {
