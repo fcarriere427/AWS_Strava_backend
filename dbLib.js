@@ -67,7 +67,7 @@ export async function addBatchItem(input_batch, tableName) {
       tableName: batch
     }
   }
-  const command = new BatchWriteItem(input,function(err, data) {
+  const command = new BatchWriteItemCommand(input,function(err, data) {
     if (err) {
       console.log("Error", err);
     } else {
