@@ -29,8 +29,8 @@ export const main = async () => {
           PutRequest: {
             Item: {
               ID: { N : "2" },
-              Contenu: {M : "{'key':'value'}"},
-              },
+              Contenu: {M : '{"Name": {"S": "Joe"}, "Age": {"N": "35"}}' },
+            },
           },
         },
       ],
