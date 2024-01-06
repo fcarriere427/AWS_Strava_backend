@@ -6,6 +6,8 @@ import { fileURLToPath } from "url";
 const config = {region: 'eu-west-3'};
 const client = new DynamoDBClient(config);
 
+const chaine = '{'+'"prenom": '+'"michel", "nom": '+'"drucker"}';
+
 export const main = async () => {
   const command = new BatchWriteItemCommand({
     RequestItems: {
@@ -29,7 +31,7 @@ export const main = async () => {
           PutRequest: {
             Item: {
               ID: { N: "2" },
-              Contenu: { M: "{\"nom\":\"michel\",\"nom\":\"drucker\"}" },
+              Contenu: { M: ${chaine}},
               },
           },
         },
