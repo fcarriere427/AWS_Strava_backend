@@ -19,21 +19,20 @@ export async function addBatchItem(input_batch, tableName) {
   //console.log(`input_batch = ${JSON.stringify(input_batch)}`);
   const nbActivities = input_batch.length;
   console.log(`nbActivities = ${nbActivities}`);
-  console.log("type of input_batch = " + typeof(input_batch));
   console.log("JSON.stringify(input_batch) = " + JSON.stringify(input_batch));
   console.log("type of JSON.stringify(input_batch) = " + typeof(JSON.stringify(input_batch)));
   console.log("JSON.stringify(input_batch[0]) = " + JSON.stringify(input_batch[0]));
   console.log("type of JSON.stringify(input_batch[0]) = " + typeof(JSON.stringify(input_batch[0])));
-  console.log("JSON.parse(input_batch) = " + JSON.parse(input_batch));
-  console.log("type of JSON.parse(input_batch) = " + typeof(JSON.parse(input_batch)));
   
-  for (const chunk of input_batch) {
-    const putRequests = chunk.map((activity) => ({
-      PutRequest: {
-        Item: activity,
-      },
-    }));
-  }
+  const map = Array.prototype.map;
+  const new_input = map.call(input_batch);
+  console.log("type of new_input = " + typeof(new_input));
+
+  const putRequests = new_input.map((activity) => ({
+    PutRequest: {
+      Item: activity,
+    },
+  }));
 
   // for(let i = 0; i < nbActivities; i++){
   //   const activity = input_batch[i];
