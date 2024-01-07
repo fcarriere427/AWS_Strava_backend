@@ -31,11 +31,11 @@ export default async function getActivities(id_athlete, nbMax) {
     // Calcul du nb de pages Strava qu'il faut requêter
     const stats = await getStats(id_athlete);
     nbStravaActivities = stats.all_ride_totals.count + stats.all_run_totals.count + stats.all_swim_totals.count;
-    nbPages = Math.floor(nbStravaActivities/100) + 1; // il ne faut pas dépasser 1 page de plus, sinon Strava plante
+    nbPages = Math.floor(nbStravaActivities/nbActivitiesPerPage) + 1; // il ne faut pas dépasser 1 page de plus, sinon Strava plante
   } else { // sinon on se limite au nb fixé
     nbStravaActivities = nbMax;
-    nbActivitiesPerPage = nbMax;
-    nbPages = Math.floor(nbMax/100) + 1;    
+    nbActivitiesPerPage = Math.min(nbMax,nbActivitiesPerPage);
+    nbPages = Math.floor(nbMax/nbActivitiesPerPage) + 1;    
   }
   // Initialisation des variables communes
   console.log("nbPages = " + nbPages);
