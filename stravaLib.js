@@ -40,8 +40,8 @@ export default async function getActivities(id_athlete, nbMax) {
   // Initialisation des variables communes
   //console.log("nbPages = " + nbPages);
   /////// TMP //////////
-  nbPages = 1;
-  nbActivitiesPerPage = 1;
+  //nbPages = 1;
+  //nbActivitiesPerPage = 1;
   /////// TMP //////////
   // Récupération du token d'accès 
   var accessToken = await getAccessToken();
