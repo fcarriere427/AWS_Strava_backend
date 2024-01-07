@@ -18,42 +18,25 @@ export async function addBatchItem(input_batch, tableName) {
   var batch = [];
   //console.log(`input_batch = ${JSON.stringify(input_batch)}`);
   const nbActivities = input_batch.length;
-  console.log(`nbActivities = ${nbActivities}`);
-  //console.log("JSON.stringify(input_batch) = " + JSON.stringify(input_batch));
-  console.log("type of input_batch = " + Object.prototype.toString.call(input_batch));
   const putRequests = input_batch.map((activity) => ({
     PutRequest: {
       Item: {
         "ID": {"N": `${Number(activity.id)}`},
         //"Activity": {"M": activity}
-        //"Contenu": {"M": `${JSON.parse(activity)}`}
-        "Contenu": {"M": `${JSON.stringify(activity)}`}
+        "Activity": {"S": `${JSON.stringify(activity)}`}
+        // NB : entre l'activité comme une chaine non structurée
+        // pour l'intégrer comme une structure (type M), il faut mapper chaque champ...
+        // "Contenu": {"M": { 
+        //   "nom champ 1" : {"S" : "texte 1"},
+        //   "nom champ 2" : {"N" : "12"}
+        // }}
       }
     },
   }));
-
-  // for(let i = 0; i < nbActivities; i++){
-  //   const activity = input_batch[i];
-  //   //const numID = Number(activity.id);
-  //   const numID = 1;
-  //   //console.log(`activity numID[${numID}] = ` + JSON.stringify(activity));
-  //   const element = {
-  //     "PutRequest": {
-  //       "Item": {
-  //         "ID": {"N": `${numID}`},
-  //         //"Activity": {"M": activity}
-  //         //"Contenu": {"M": `${JSON.parse(activity)}`}
-  //         "Contenu": {"M": `${activity}`}
-  //       }
-  //     }
-  //   }
-  //   batch.push(element);
-  //   //console.log(`element{${numID}} =` + JSON.stringify(element));
-  // }
   
   const command = new BatchWriteItemCommand({
     RequestItems: {
-      ["Test"]: putRequests,
+      [`${tableName}`]: putRequests,
     },
   });
   
