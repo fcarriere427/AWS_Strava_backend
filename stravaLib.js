@@ -38,7 +38,7 @@ export default async function getActivities(id_athlete, nbMax) {
     nbPages = Math.floor(nbMax/100) + 1;    
   }
   // Initialisation des variables communes
-  //console.log("nbPages = " + nbPages);
+  console.log("nbPages = " + nbPages);
   /////// TMP //////////
   //nbPages = 1;
   //nbActivitiesPerPage = 1;

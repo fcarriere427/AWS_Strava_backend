@@ -40,7 +40,7 @@ export async function addBatchItem(input_batch, tableName) {
     },
   });
   
-  console.log('command = ' + JSON.stringify(command));
+  //console.log('command = ' + JSON.stringify(command));
   
   const response = await docClient.send(command,function(err, data) {
     if (err) {
