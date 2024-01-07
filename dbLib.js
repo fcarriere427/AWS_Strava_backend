@@ -46,7 +46,7 @@ export async function addBatchItem(input_batch, tableName) {
     if (err) {
       console.log("Error", err);
     } else {
-      console.log("Success", data);
+      // console.log("Success", data);
     }
   });
   return response;
