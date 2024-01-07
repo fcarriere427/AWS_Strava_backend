@@ -24,7 +24,7 @@ export default async function getActivities(id_athlete, nbMax) {
   // Initialisation des variables
   var nbStravaActivities = 0;
   var nbPages = 0;
-  var nbActivitiesPerPage = 100;
+  var nbActivitiesPerPage = 25;
   var nbActivities = 0;
   // Adaptation des variables selon l'usage
   if (nbMax == 0) {// pour avoir toutes les activités
